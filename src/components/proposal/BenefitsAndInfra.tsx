@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Globe, Cpu, Shield, Zap, Server, Database, HardDrive, Wifi, Monitor, CheckCircle2, Clock } from "lucide-react";
+import { Globe, Cpu, Shield, Zap, Server, Database, HardDrive, Wifi, Monitor, CheckCircle2, Clock, Cloud } from "lucide-react";
+import CorePlatformDiagram from "./CorePlatformDiagram";
 
 const fade = {
   initial: { opacity: 0, y: 20 } as const,
@@ -9,10 +10,10 @@ const fade = {
 };
 
 const infraNodes = [
-  { icon: Server, title: "App Server", specs: "4 cores · 16 GB · 128 GB SSD", os: "Windows Server 2019", x: 20, y: 30 },
-  { icon: Database, title: "Database", specs: "4 cores · 16 GB · 256 GB", os: "MS SQL 2019 SaaS", x: 50, y: 15 },
-  { icon: HardDrive, title: "Web / APIs", specs: "4 cores · 16 GB · 128 GB SSD", os: "Linux", x: 80, y: 30 },
-  { icon: Wifi, title: "Network", specs: "Backup diario · 15 días retención", os: "Core Colaborativo", x: 50, y: 55 },
+  { icon: Server, title: "App Server", specs: "4 cores · 16 GB · 128 GB SSD", os: "Windows Server 2019" },
+  { icon: Database, title: "Azure SQL", specs: "4 cores · 16 GB · 256 GB", os: "MS SQL 2019 SaaS" },
+  { icon: HardDrive, title: "Web / APIs", specs: "4 cores · 16 GB · 128 GB SSD", os: "Linux" },
+  { icon: Wifi, title: "Azure Network", specs: "Backup diario · 15 días retención", os: "VPN + Firewall" },
 ];
 
 const timeline = [
@@ -29,6 +30,7 @@ const timeline = [
 const BenefitsAndInfra = () => (
   <section className="py-20 md:py-28 bg-muted/50">
     <div className="container px-6 max-w-5xl">
+      {/* Benefits */}
       <motion.div {...fade} className="text-center mb-14">
         <h2 className="text-sm font-semibold uppercase tracking-wider text-sysde-red mb-2">Ventajas</h2>
         <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
@@ -62,85 +64,108 @@ const BenefitsAndInfra = () => (
         ))}
       </div>
 
-      {/* APIs */}
+      {/* Core de APIs SYSDE - Circular Diagram */}
       <motion.div {...fade} className="mb-20">
-        <h3 className="text-2xl font-bold text-foreground mb-6 text-center">Core de APIs Colaborativas</h3>
-        <div className="grid md:grid-cols-4 gap-4">
-          {[
-            { title: "Clientes", items: ["Inserción persona física/socio", "Inserción persona jurídica", "Todas sus colecciones"] },
-            { title: "Parámetros", items: ["Distribución geográfica", "Código postal"] },
-            { title: "Préstamos", items: ["Inserción crédito simple", "Aprobación desembolso", "Solicitud ministraciones", "Tabla valores", "Consulta plan de pagos"] },
-            { title: "Contabilidad", items: ["Generación interfaz contable", "Inserción garantías (colateral, prendaria, etc.)"] },
-          ].map((col) => (
-            <div key={col.title} className="p-5 rounded-xl bg-card border border-border">
-              <h4 className="font-semibold text-sysde-red text-sm mb-3 uppercase tracking-wider">{col.title}</h4>
-              <ul className="space-y-1.5">
-                {col.items.map((item) => (
-                  <li key={item} className="text-xs text-muted-foreground">• {item}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <p className="text-xs text-muted-foreground text-center mt-4 italic">
-          Servicios adicionales: Calculadora, Pago banca en línea, Apps, Predicción de fraude, Gestor de notificaciones, Originación, Buró de crédito, Flujo documental digital, Reportes regulatorios, Pasarela de pago mobile, Dispositivos IoT.
+        <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2 text-center">Core de APIs SYSDE Incluido</h3>
+        <p className="text-sm text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
+          Ecosistema completo de servicios integrados que potencian la plataforma colaborativa
         </p>
+        <CorePlatformDiagram />
       </motion.div>
 
-      {/* Infrastructure - Tech Style */}
+      {/* Infrastructure ON-CLOUD + Azure */}
       <motion.div {...fade}>
-        <h3 className="text-2xl font-bold text-foreground mb-2 text-center">Infraestructura ON-CLOUD</h3>
-        <p className="text-sm text-muted-foreground text-center mb-8">Arquitectura dedicada de alto rendimiento incluida en la renta</p>
+        <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2 text-center">Infraestructura ON-CLOUD</h3>
+        <p className="text-sm text-muted-foreground text-center mb-8">
+          Arquitectura dedicada de alto rendimiento impulsada por nuestro aliado estratégico
+        </p>
 
         <div className="relative rounded-2xl bg-sysde-dark p-8 md:p-12 overflow-hidden">
-          {/* Grid background */}
-          <div className="absolute inset-0 opacity-10">
+          {/* Animated circuit board background */}
+          <div className="absolute inset-0 opacity-[0.07]">
             <div className="w-full h-full" style={{
-              backgroundImage: "linear-gradient(hsl(var(--sysde-blue) / 0.3) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--sysde-blue) / 0.3) 1px, transparent 1px)",
-              backgroundSize: "40px 40px",
+              backgroundImage: `
+                linear-gradient(hsl(var(--sysde-blue)) 1px, transparent 1px),
+                linear-gradient(90deg, hsl(var(--sysde-blue)) 1px, transparent 1px),
+                linear-gradient(hsl(var(--sysde-blue) / 0.5) 0.5px, transparent 0.5px),
+                linear-gradient(90deg, hsl(var(--sysde-blue) / 0.5) 0.5px, transparent 0.5px)
+              `,
+              backgroundSize: "60px 60px, 60px 60px, 15px 15px, 15px 15px",
             }} />
           </div>
 
-          {/* Glowing dots */}
-          {Array.from({ length: 20 }).map((_, i) => (
+          {/* Floating data particles */}
+          {Array.from({ length: 30 }).map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 rounded-full bg-sysde-blue"
-              style={{ left: `${10 + Math.random() * 80}%`, top: `${10 + Math.random() * 80}%` }}
-              animate={{ opacity: [0.2, 0.8, 0.2] }}
-              transition={{ duration: 2 + Math.random() * 3, repeat: Infinity, delay: Math.random() * 2 }}
+              className="absolute rounded-full"
+              style={{
+                left: `${5 + Math.random() * 90}%`,
+                top: `${5 + Math.random() * 90}%`,
+                width: `${1 + Math.random() * 2}px`,
+                height: `${1 + Math.random() * 2}px`,
+                backgroundColor: i % 3 === 0 ? "hsl(var(--sysde-red))" : "hsl(var(--sysde-blue))",
+              }}
+              animate={{
+                opacity: [0, 0.8, 0],
+                y: [0, -30, -60],
+              }}
+              transition={{ duration: 3 + Math.random() * 4, repeat: Infinity, delay: Math.random() * 3 }}
             />
           ))}
 
-          {/* Connection lines SVG */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 70">
-            <motion.line x1="30" y1="35" x2="50" y2="20" stroke="hsl(var(--sysde-blue))" strokeWidth="0.3" strokeDasharray="2 2"
-              animate={{ opacity: [0.2, 0.6, 0.2] }} transition={{ duration: 3, repeat: Infinity }} />
-            <motion.line x1="70" y1="35" x2="50" y2="20" stroke="hsl(var(--sysde-blue))" strokeWidth="0.3" strokeDasharray="2 2"
-              animate={{ opacity: [0.2, 0.6, 0.2] }} transition={{ duration: 3, repeat: Infinity, delay: 0.5 }} />
-            <motion.line x1="30" y1="35" x2="50" y2="55" stroke="hsl(var(--sysde-red))" strokeWidth="0.3" strokeDasharray="2 2"
-              animate={{ opacity: [0.2, 0.6, 0.2] }} transition={{ duration: 3, repeat: Infinity, delay: 1 }} />
-            <motion.line x1="70" y1="35" x2="50" y2="55" stroke="hsl(var(--sysde-red))" strokeWidth="0.3" strokeDasharray="2 2"
-              animate={{ opacity: [0.2, 0.6, 0.2] }} transition={{ duration: 3, repeat: Infinity, delay: 1.5 }} />
+          {/* Azure badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative z-10 flex justify-center mb-8"
+          >
+            <div className="flex items-center gap-3 bg-primary-foreground/10 backdrop-blur-sm border border-sysde-blue/30 rounded-full px-6 py-3">
+              <Cloud className="w-5 h-5 text-sysde-blue" />
+              <span className="text-sm font-bold text-primary-foreground tracking-wide">
+                Microsoft Azure
+              </span>
+              <span className="text-[10px] text-primary-foreground/50 font-mono">// ALIADO ESTRATÉGICO</span>
+            </div>
+          </motion.div>
+
+          {/* Hex data flow lines */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20" viewBox="0 0 100 70">
+            {/* Horizontal data streams */}
+            <motion.line x1="0" y1="20" x2="100" y2="20" stroke="hsl(var(--sysde-blue))" strokeWidth="0.15" strokeDasharray="1 3"
+              animate={{ strokeDashoffset: [0, -20] }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} />
+            <motion.line x1="0" y1="50" x2="100" y2="50" stroke="hsl(var(--sysde-blue))" strokeWidth="0.15" strokeDasharray="1 3"
+              animate={{ strokeDashoffset: [0, -20] }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} />
+            {/* Cross connections */}
+            <motion.line x1="25" y1="10" x2="75" y2="60" stroke="hsl(var(--sysde-red))" strokeWidth="0.1" strokeDasharray="2 4"
+              animate={{ strokeDashoffset: [0, -30] }} transition={{ duration: 12, repeat: Infinity, ease: "linear" }} />
+            <motion.line x1="75" y1="10" x2="25" y2="60" stroke="hsl(var(--sysde-red))" strokeWidth="0.1" strokeDasharray="2 4"
+              animate={{ strokeDashoffset: [0, -30] }} transition={{ duration: 14, repeat: Infinity, ease: "linear" }} />
           </svg>
 
-          <div className="relative z-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Nodes grid */}
+          <div className="relative z-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {infraNodes.map((node, i) => (
               <motion.div
                 key={node.title}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.15 }}
+                transition={{ duration: 0.5, delay: i * 0.12 }}
                 className="group"
               >
-                <div className="relative p-5 rounded-xl border border-secondary/20 bg-sysde-dark backdrop-blur-sm hover:border-secondary/50 transition-all duration-300">
-                  {/* Glow effect on hover */}
-                  <div className="absolute inset-0 rounded-xl bg-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  
+                <div className="relative p-5 rounded-xl border border-sysde-blue/15 bg-[hsl(var(--sysde-dark)/0.8)] backdrop-blur-md hover:border-sysde-blue/40 transition-all duration-300 overflow-hidden">
+                  {/* Corner accents */}
+                  <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-sysde-blue/30 rounded-tl-xl" />
+                  <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-sysde-blue/30 rounded-br-xl" />
+
+                  {/* Hover glow */}
+                  <div className="absolute inset-0 rounded-xl bg-sysde-blue/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+
                   <div className="relative">
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-lg bg-gradient-sysde-blue flex items-center justify-center shadow-[0_0_15px_hsl(var(--sysde-blue)/0.3)]">
+                      <div className="w-10 h-10 rounded-lg bg-gradient-sysde-blue flex items-center justify-center shadow-[0_0_20px_hsl(var(--sysde-blue)/0.25)]">
                         <node.icon className="h-5 w-5 text-secondary-foreground" />
                       </div>
                       <div className="flex-1">
@@ -152,42 +177,42 @@ const BenefitsAndInfra = () => (
                             animate={{ opacity: [1, 0.4, 1] }}
                             transition={{ duration: 2, repeat: Infinity }}
                           />
-                          <span className="text-[10px] font-mono" style={{ color: "hsl(142, 71%, 45%, 0.8)" }}>ONLINE</span>
+                          <span className="text-[10px] font-mono" style={{ color: "hsl(142, 71%, 45%, 0.8)" }}>ACTIVE</span>
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="space-y-1.5 font-mono">
                       <p className="text-xs text-secondary/80">{node.specs}</p>
                       <p className="text-[10px] text-muted-foreground/60">{node.os}</p>
                     </div>
 
-                    {/* Mini metric bars */}
+                    {/* Metric bars */}
                     <div className="mt-3 space-y-1">
-                      <div className="flex items-center gap-2">
-                        <span className="text-[9px] text-muted-foreground/50 w-8">CPU</span>
-                        <div className="flex-1 h-1 rounded-full bg-secondary/10 overflow-hidden">
-                          <motion.div
-                            className="h-full rounded-full bg-gradient-sysde-blue"
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${30 + i * 15}%` }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1.5, delay: i * 0.2 }}
-                          />
+                      {["CPU", "MEM", "I/O"].map((label, li) => (
+                        <div key={label} className="flex items-center gap-2">
+                          <span className="text-[9px] text-muted-foreground/50 w-6 font-mono">{label}</span>
+                          <div className="flex-1 h-1 rounded-full bg-secondary/10 overflow-hidden">
+                            <motion.div
+                              className="h-full rounded-full"
+                              style={{
+                                background: li === 0
+                                  ? "linear-gradient(90deg, hsl(var(--sysde-blue)), hsl(142, 71%, 45%))"
+                                  : li === 1
+                                  ? "hsl(var(--sysde-blue))"
+                                  : "hsl(var(--sysde-red))",
+                              }}
+                              initial={{ width: 0 }}
+                              whileInView={{ width: `${20 + i * 12 + li * 8}%` }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 1.5, delay: i * 0.15 + li * 0.2 }}
+                            />
+                          </div>
+                          <span className="text-[8px] text-muted-foreground/40 font-mono w-6 text-right">
+                            {20 + i * 12 + li * 8}%
+                          </span>
                         </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-[9px] text-muted-foreground/50 w-8">MEM</span>
-                        <div className="flex-1 h-1 rounded-full bg-secondary/10 overflow-hidden">
-                          <motion.div
-                            className="h-full rounded-full bg-sysde-blue"
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${20 + i * 12}%` }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1.5, delay: i * 0.2 + 0.3 }}
-                          />
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -195,24 +220,43 @@ const BenefitsAndInfra = () => (
             ))}
           </div>
 
-          {/* Bottom status bar */}
-          <div className="relative z-10 mt-8 flex items-center justify-center gap-6 text-[10px] font-mono text-muted-foreground/50">
+          {/* Status bar */}
+          <div className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4 md:gap-6 text-[10px] font-mono text-muted-foreground/50">
             <span className="flex items-center gap-1.5">
-            <motion.div
-              className="w-1.5 h-1.5 rounded-full"
-              style={{ backgroundColor: "hsl(142, 71%, 45%)" }}
-              animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.5, repeat: Infinity }} />
+              <motion.div
+                className="w-1.5 h-1.5 rounded-full"
+                style={{ backgroundColor: "hsl(142, 71%, 45%)" }}
+                animate={{ opacity: [1, 0.3, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
               4 NODES ACTIVE
             </span>
-            <span>|</span>
-            <span>LATENCY: 12ms</span>
-            <span>|</span>
-            <span>UPTIME: 99.9%</span>
+            <span className="hidden md:inline">|</span>
+            <span>REGION: AZURE EAST US</span>
+            <span className="hidden md:inline">|</span>
+            <span>LATENCY: 8ms</span>
+            <span className="hidden md:inline">|</span>
+            <span>SLA: 99.95%</span>
           </div>
+
+          {/* Azure features strip */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            className="relative z-10 mt-6 flex flex-wrap justify-center gap-2"
+          >
+            {["Azure Defender", "Auto-Scaling", "Geo-Redundancia", "Azure Monitor", "Key Vault"].map((feat) => (
+              <span key={feat} className="text-[9px] font-mono px-3 py-1 rounded-full border border-sysde-blue/20 text-sysde-blue/60 bg-sysde-blue/5">
+                {feat}
+              </span>
+            ))}
+          </motion.div>
         </div>
       </motion.div>
 
-      {/* Cronograma - Reference Image Style */}
+      {/* Cronograma */}
       <motion.div {...fade} className="mt-20">
         <h3 className="text-3xl font-bold text-foreground mb-2 text-center">Cronograma de Implementación</h3>
         <p className="text-sm text-muted-foreground text-center mb-10">
@@ -220,7 +264,6 @@ const BenefitsAndInfra = () => (
         </p>
 
         <div className="rounded-2xl bg-gradient-sysde p-6 md:p-10 space-y-4">
-          {/* Month headers */}
           <div className="grid grid-cols-[200px_1fr] md:grid-cols-[240px_1fr] gap-3 mb-2">
             <div />
             <div className="grid grid-cols-8 gap-1.5">
@@ -241,7 +284,6 @@ const BenefitsAndInfra = () => (
               transition={{ duration: 0.4, delay: ri * 0.08 }}
               className="grid grid-cols-[200px_1fr] md:grid-cols-[240px_1fr] gap-3 items-center bg-primary-foreground/10 rounded-xl p-2"
             >
-              {/* Stage label */}
               <div className="flex items-center gap-3 pl-2">
                 <div className="w-8 h-8 rounded-lg bg-primary-foreground/15 flex items-center justify-center flex-shrink-0">
                   <row.icon className="w-4 h-4 text-primary-foreground/80" />
@@ -256,7 +298,6 @@ const BenefitsAndInfra = () => (
                 </div>
               </div>
 
-              {/* Gantt bars */}
               <div className="grid grid-cols-8 gap-1.5">
                 {row.months.map((active, mi) => (
                   <div key={mi} className="h-9 rounded-lg relative overflow-hidden">
@@ -279,7 +320,6 @@ const BenefitsAndInfra = () => (
             </motion.div>
           ))}
 
-          {/* Bottom badge */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
