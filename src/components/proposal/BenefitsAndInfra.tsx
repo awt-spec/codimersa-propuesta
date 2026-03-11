@@ -121,8 +121,8 @@ const BenefitsAndInfra = () => (
             viewport={{ once: true }}
             className="relative z-10 flex justify-center mb-8"
           >
-            <div className="flex items-center gap-3 bg-primary-foreground/10 backdrop-blur-sm border border-sysde-blue/30 rounded-full px-6 py-3">
-              <Cloud className="w-5 h-5 text-sysde-blue" />
+            <div className="flex items-center gap-3 bg-primary-foreground/15 backdrop-blur-sm border border-primary-foreground/30 rounded-full px-6 py-3">
+              <Cloud className="w-5 h-5 text-primary-foreground" />
               <span className="text-sm font-bold text-primary-foreground tracking-wide">
                 Microsoft Azure
               </span>
