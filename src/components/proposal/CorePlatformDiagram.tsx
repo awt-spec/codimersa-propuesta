@@ -80,31 +80,19 @@ const CorePlatformDiagram = () => {
           />
         ))}
 
-        {/* Core circle with glow */}
+        {/* Core circle flat */}
         <motion.circle
           cx={cx}
           cy={cy}
           r={coreRadius}
-          fill="url(#coreGrad)"
+          fill="hsl(207, 60%, 92%)"
+          stroke="hsl(207, 60%, 80%)"
+          strokeWidth="2"
           filter="url(#coreGlow)"
           initial={{ scale: 0 }}
           whileInView={{ scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, type: "spring" }}
-          style={{ transformOrigin: `${cx}px ${cy}px` }}
-        />
-        <motion.circle
-          cx={cx}
-          cy={cy}
-          r={coreRadius + 15}
-          fill="none"
-          stroke="hsl(207, 60%, 55%)"
-          strokeWidth="1"
-          opacity="0.15"
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, type: "spring" }}
           style={{ transformOrigin: `${cx}px ${cy}px` }}
         />
 
