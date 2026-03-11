@@ -157,8 +157,8 @@ const BenefitsAndInfra = () => (
               >
                 <div className="relative p-5 rounded-xl border border-primary-foreground/20 bg-primary-foreground/10 backdrop-blur-md hover:border-primary-foreground/40 transition-all duration-300 overflow-hidden">
                   {/* Corner accents */}
-                  <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-sysde-blue/30 rounded-tl-xl" />
-                  <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-sysde-blue/30 rounded-br-xl" />
+                   <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-primary-foreground/30 rounded-tl-xl" />
+                  <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-primary-foreground/30 rounded-br-xl" />
 
                   {/* Hover glow */}
                   <div className="absolute inset-0 rounded-xl bg-sysde-blue/5 opacity-0 group-hover:opacity-100 transition-opacity" />
