@@ -80,7 +80,7 @@ const BenefitsAndInfra = () => (
           Arquitectura dedicada de alto rendimiento impulsada por nuestro aliado estratégico
         </p>
 
-        <div className="relative rounded-2xl bg-sysde-dark p-8 md:p-12 overflow-hidden">
+        <div className="relative rounded-2xl bg-gradient-sysde p-8 md:p-12 overflow-hidden">
           {/* Animated circuit board background */}
           <div className="absolute inset-0 opacity-[0.07]">
             <div className="w-full h-full" style={{
@@ -121,8 +121,8 @@ const BenefitsAndInfra = () => (
             viewport={{ once: true }}
             className="relative z-10 flex justify-center mb-8"
           >
-            <div className="flex items-center gap-3 bg-primary-foreground/10 backdrop-blur-sm border border-sysde-blue/30 rounded-full px-6 py-3">
-              <Cloud className="w-5 h-5 text-sysde-blue" />
+            <div className="flex items-center gap-3 bg-primary-foreground/15 backdrop-blur-sm border border-primary-foreground/30 rounded-full px-6 py-3">
+              <Cloud className="w-5 h-5 text-primary-foreground" />
               <span className="text-sm font-bold text-primary-foreground tracking-wide">
                 Microsoft Azure
               </span>
@@ -155,13 +155,13 @@ const BenefitsAndInfra = () => (
                 transition={{ duration: 0.5, delay: i * 0.12 }}
                 className="group"
               >
-                <div className="relative p-5 rounded-xl border border-sysde-blue/15 bg-[hsl(var(--sysde-dark)/0.8)] backdrop-blur-md hover:border-sysde-blue/40 transition-all duration-300 overflow-hidden">
+                <div className="relative p-5 rounded-xl border border-primary-foreground/20 bg-primary-foreground/10 backdrop-blur-md hover:border-primary-foreground/40 transition-all duration-300 overflow-hidden">
                   {/* Corner accents */}
-                  <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-sysde-blue/30 rounded-tl-xl" />
-                  <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-sysde-blue/30 rounded-br-xl" />
+                   <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-primary-foreground/30 rounded-tl-xl" />
+                  <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-primary-foreground/30 rounded-br-xl" />
 
                   {/* Hover glow */}
-                  <div className="absolute inset-0 rounded-xl bg-sysde-blue/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 rounded-xl bg-primary-foreground/5 opacity-0 group-hover:opacity-100 transition-opacity" />
 
                   <div className="relative">
                     <div className="flex items-center gap-3 mb-3">
@@ -248,7 +248,7 @@ const BenefitsAndInfra = () => (
             className="relative z-10 mt-6 flex flex-wrap justify-center gap-2"
           >
             {["Azure Defender", "Auto-Scaling", "Geo-Redundancia", "Azure Monitor", "Key Vault"].map((feat) => (
-              <span key={feat} className="text-[9px] font-mono px-3 py-1 rounded-full border border-sysde-blue/20 text-sysde-blue/60 bg-sysde-blue/5">
+              <span key={feat} className="text-[9px] font-mono px-3 py-1 rounded-full border border-primary-foreground/20 text-primary-foreground/60 bg-primary-foreground/5">
                 {feat}
               </span>
             ))}

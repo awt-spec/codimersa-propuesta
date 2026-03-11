@@ -26,11 +26,11 @@ const Index = () => {
       <div id="beneficios">
         <BenefitsAndInfra />
       </div>
-      <div id="propuesta">
-        <EconomicProposal />
-      </div>
       <div id="vision">
         <VisionAndTimeline />
+      </div>
+      <div id="propuesta">
+        <EconomicProposal />
       </div>
       <ProposalFooter />
       <ProposalChatbot />
