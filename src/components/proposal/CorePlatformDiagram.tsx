@@ -22,87 +22,207 @@ const services = [
 
 const CorePlatformDiagram = () => {
   const count = services.length;
-  const radius = 42; // percentage from center
+  // Use SVG viewBox for precise control
+  const cx = 500;
+  const cy = 500;
+  const orbitRadius = 360;
+  const nodeRadius = 58;
+  const coreRadius = 130;
+
+  const nodes = services.map((service, i) => {
+    const angle = (i / count) * Math.PI * 2 - Math.PI / 2;
+    return {
+      label: service,
+      x: cx + orbitRadius * Math.cos(angle),
+      y: cy + orbitRadius * Math.sin(angle),
+    };
+  });
 
   return (
-    <div className="relative w-full max-w-2xl mx-auto aspect-square">
-      {/* Orbit ring */}
-      <div className="absolute inset-[8%] rounded-full border border-dashed border-sysde-blue/20" />
+    <div className="w-full max-w-3xl mx-auto">
+      <svg viewBox="0 0 1000 1000" className="w-full h-auto">
+        <defs>
+          {/* Core gradient */}
+          <radialGradient id="coreGrad" cx="40%" cy="40%">
+            <stop offset="0%" stopColor="hsl(207, 60%, 70%)" stopOpacity="0.9" />
+            <stop offset="60%" stopColor="hsl(207, 60%, 55%)" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="hsl(207, 60%, 45%)" stopOpacity="0.2" />
+          </radialGradient>
+          {/* Node gradient */}
+          <radialGradient id="nodeGrad" cx="35%" cy="35%">
+            <stop offset="0%" stopColor="hsl(355, 72%, 48%)" />
+            <stop offset="100%" stopColor="hsl(355, 72%, 36%)" />
+          </radialGradient>
+          {/* Glow filter */}
+          <filter id="coreGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="20" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
 
-      {/* Center core */}
-      <motion.div
-        initial={{ scale: 0 }}
-        whileInView={{ scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, type: "spring" }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[38%] aspect-square rounded-full bg-gradient-to-br from-sysde-blue to-[hsl(var(--sysde-blue-dark))] flex items-center justify-center shadow-[0_0_60px_hsl(var(--sysde-blue)/0.3)] z-10"
-      >
-        <div className="text-center px-4">
-          <p className="text-lg md:text-xl font-bold text-primary-foreground italic">Sysde</p>
-          <p className="text-[10px] md:text-xs font-bold text-primary-foreground/80 uppercase tracking-wider leading-tight mt-1">
-            Core / Plataforma<br />Colaborativa
-          </p>
-        </div>
-      </motion.div>
-
-      {/* Pulsing rings */}
-      {[0, 1, 2].map((r) => (
-        <motion.div
-          key={r}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-sysde-blue/10"
-          style={{ width: `${42 + r * 4}%`, height: `${42 + r * 4}%` }}
-          animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.1, 0.3] }}
-          transition={{ duration: 3, repeat: Infinity, delay: r * 0.8 }}
+        {/* Orbit ring */}
+        <circle
+          cx={cx}
+          cy={cy}
+          r={orbitRadius}
+          fill="none"
+          stroke="hsl(207, 60%, 55%)"
+          strokeWidth="1"
+          strokeDasharray="6 8"
+          opacity="0.15"
         />
-      ))}
 
-      {/* Service nodes */}
-      {services.map((service, i) => {
-        const angle = (i / count) * 360 - 90;
-        const rad = (angle * Math.PI) / 180;
-        const x = 50 + radius * Math.cos(rad);
-        const y = 50 + radius * Math.sin(rad);
+        {/* Connection lines from nodes to center */}
+        {nodes.map((node, i) => (
+          <motion.line
+            key={`line-${i}`}
+            x1={node.x}
+            y1={node.y}
+            x2={cx}
+            y2={cy}
+            stroke="hsl(355, 72%, 50%)"
+            strokeWidth="0.8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 0.12 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: i * 0.03 }}
+          />
+        ))}
 
-        return (
-          <motion.div
-            key={service}
+        {/* Core circle with glow */}
+        <motion.circle
+          cx={cx}
+          cy={cy}
+          r={coreRadius}
+          fill="url(#coreGrad)"
+          filter="url(#coreGlow)"
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, type: "spring" }}
+          style={{ transformOrigin: `${cx}px ${cy}px` }}
+        />
+        <motion.circle
+          cx={cx}
+          cy={cy}
+          r={coreRadius + 15}
+          fill="none"
+          stroke="hsl(207, 60%, 55%)"
+          strokeWidth="1"
+          opacity="0.15"
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, type: "spring" }}
+          style={{ transformOrigin: `${cx}px ${cy}px` }}
+        />
+
+        {/* Core text */}
+        <text
+          x={cx}
+          y={cy - 14}
+          textAnchor="middle"
+          className="fill-foreground"
+          fontWeight="800"
+          fontSize="28"
+          fontStyle="italic"
+          opacity="0.85"
+        >
+          Sysde
+        </text>
+        <text
+          x={cx}
+          y={cy + 14}
+          textAnchor="middle"
+          className="fill-foreground"
+          fontWeight="700"
+          fontSize="12"
+          letterSpacing="2"
+          opacity="0.55"
+        >
+          CORE / PLATAFORMA
+        </text>
+        <text
+          x={cx}
+          y={cy + 30}
+          textAnchor="middle"
+          className="fill-foreground"
+          fontWeight="700"
+          fontSize="12"
+          letterSpacing="2"
+          opacity="0.55"
+        >
+          COLABORATIVA
+        </text>
+
+        {/* Service nodes */}
+        {nodes.map((node, i) => (
+          <motion.g
+            key={node.label}
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.04 }}
-            className="absolute -translate-x-1/2 -translate-y-1/2 group z-20"
-            style={{ left: `${x}%`, top: `${y}%` }}
+            style={{ transformOrigin: `${node.x}px ${node.y}px` }}
           >
-            {/* Connection line to center */}
-            <svg
-              className="absolute pointer-events-none"
-              style={{
-                left: "50%",
-                top: "50%",
-                width: "1px",
-                height: "1px",
-                overflow: "visible",
-              }}
-            >
-              <line
-                x1="0"
-                y1="0"
-                x2={`${(50 - x) * 6}` }
-                y2={`${(50 - y) * 6}`}
-                stroke="hsl(var(--sysde-blue))"
-                strokeWidth="0.5"
-                strokeOpacity="0.15"
-              />
-            </svg>
+            {/* Dashed orbit around node */}
+            <circle
+              cx={node.x}
+              cy={node.y}
+              r={nodeRadius + 8}
+              fill="none"
+              stroke="hsl(355, 72%, 45%)"
+              strokeWidth="0.8"
+              strokeDasharray="3 5"
+              opacity="0.2"
+            />
+            {/* Node circle */}
+            <circle
+              cx={node.x}
+              cy={node.y}
+              r={nodeRadius}
+              fill="url(#nodeGrad)"
+              className="cursor-pointer hover:opacity-90 transition-opacity"
+            />
+            {/* Node label - split into lines */}
+            {(() => {
+              const words = node.label.split(" ");
+              const lines: string[] = [];
+              let current = "";
+              words.forEach((w) => {
+                if (current && (current + " " + w).length > 12) {
+                  lines.push(current);
+                  current = w;
+                } else {
+                  current = current ? current + " " + w : w;
+                }
+              });
+              if (current) lines.push(current);
 
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-sysde-red flex items-center justify-center cursor-pointer hover:scale-110 transition-transform duration-200 shadow-[0_4px_20px_hsl(var(--sysde-red)/0.3)]">
-              <span className="text-[8px] md:text-[9px] font-semibold text-primary-foreground text-center leading-tight px-1.5">
-                {service}
-              </span>
-            </div>
-          </motion.div>
-        );
-      })}
+              const lineHeight = 15;
+              const startY = node.y - ((lines.length - 1) * lineHeight) / 2;
+
+              return lines.map((line, li) => (
+                <text
+                  key={li}
+                  x={node.x}
+                  y={startY + li * lineHeight}
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                  fill="white"
+                  fontWeight="600"
+                  fontSize="13"
+                >
+                  {line}
+                </text>
+              ));
+            })()}
+          </motion.g>
+        ))}
+      </svg>
     </div>
   );
 };
