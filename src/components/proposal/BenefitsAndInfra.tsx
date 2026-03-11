@@ -80,7 +80,7 @@ const BenefitsAndInfra = () => (
           Arquitectura dedicada de alto rendimiento impulsada por nuestro aliado estratégico
         </p>
 
-        <div className="relative rounded-2xl bg-sysde-dark p-8 md:p-12 overflow-hidden">
+        <div className="relative rounded-2xl bg-gradient-sysde p-8 md:p-12 overflow-hidden">
           {/* Animated circuit board background */}
           <div className="absolute inset-0 opacity-[0.07]">
             <div className="w-full h-full" style={{
