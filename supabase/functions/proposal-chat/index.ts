@@ -95,7 +95,7 @@ serve(async (req) => {
   }
 
   try {
-    const { question } = await req.json();
+    const { messages } = await req.json();
     
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) {
@@ -125,10 +125,9 @@ INSTRUCCIONES:
         model: "google/gemini-3-flash-preview",
         messages: [
           { role: "system", content: systemPrompt },
-          { role: "user", content: question },
+          ...messages,
         ],
-        max_tokens: 800,
-        temperature: 0.7,
+        stream: true,
       }),
     });
 
@@ -154,14 +153,9 @@ INSTRUCCIONES:
       );
     }
 
-    const data = await response.json();
-    const aiResponse = data.choices?.[0]?.message?.content || 
-      "Lo siento, no pude procesar tu pregunta. ¿Podrías reformularla?";
-
-    return new Response(
-      JSON.stringify({ response: aiResponse }),
-      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
+    return new Response(response.body, {
+      headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
+    });
 
   } catch (error) {
     console.error("Chat error:", error);
