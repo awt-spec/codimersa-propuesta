@@ -5,6 +5,88 @@ import ReactMarkdown from "react-markdown";
 
 type Message = { role: "user" | "assistant"; content: string };
 
+const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/proposal-chat`;
+
+async function streamChat({
+  messages,
+  onDelta,
+  onDone,
+}: {
+  messages: Message[];
+  onDelta: (deltaText: string) => void;
+  onDone: () => void;
+}) {
+  const resp = await fetch(CHAT_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+    },
+    body: JSON.stringify({ messages }),
+  });
+
+  if (!resp.ok || !resp.body) {
+    if (resp.status === 429) throw new Error("Demasiadas consultas. Intenta de nuevo en un momento.");
+    if (resp.status === 402) throw new Error("Servicio temporalmente no disponible.");
+    throw new Error("Error al procesar tu pregunta. Intenta de nuevo.");
+  }
+
+  const reader = resp.body.getReader();
+  const decoder = new TextDecoder();
+  let textBuffer = "";
+  let streamDone = false;
+
+  while (!streamDone) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    textBuffer += decoder.decode(value, { stream: true });
+
+    let newlineIndex: number;
+    while ((newlineIndex = textBuffer.indexOf("\n")) !== -1) {
+      let line = textBuffer.slice(0, newlineIndex);
+      textBuffer = textBuffer.slice(newlineIndex + 1);
+
+      if (line.endsWith("\r")) line = line.slice(0, -1);
+      if (line.startsWith(":") || line.trim() === "") continue;
+      if (!line.startsWith("data: ")) continue;
+
+      const jsonStr = line.slice(6).trim();
+      if (jsonStr === "[DONE]") {
+        streamDone = true;
+        break;
+      }
+
+      try {
+        const parsed = JSON.parse(jsonStr);
+        const content = parsed.choices?.[0]?.delta?.content as string | undefined;
+        if (content) onDelta(content);
+      } catch {
+        textBuffer = line + "\n" + textBuffer;
+        break;
+      }
+    }
+  }
+
+  // Final flush
+  if (textBuffer.trim()) {
+    for (let raw of textBuffer.split("\n")) {
+      if (!raw) continue;
+      if (raw.endsWith("\r")) raw = raw.slice(0, -1);
+      if (raw.startsWith(":") || raw.trim() === "") continue;
+      if (!raw.startsWith("data: ")) continue;
+      const jsonStr = raw.slice(6).trim();
+      if (jsonStr === "[DONE]") continue;
+      try {
+        const parsed = JSON.parse(jsonStr);
+        const content = parsed.choices?.[0]?.delta?.content as string | undefined;
+        if (content) onDelta(content);
+      } catch { /* ignore */ }
+    }
+  }
+
+  onDone();
+}
+
 const ProposalChatbot = () => {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -14,57 +96,53 @@ const ProposalChatbot = () => {
     },
   ]);
   const [input, setInput] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEnd = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     messagesEnd.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isTyping]);
+  }, [messages, isLoading]);
 
   const send = async () => {
     const q = input.trim();
-    if (!q || isTyping) return;
-    
+    if (!q || isLoading) return;
+
+    const userMsg: Message = { role: "user", content: q };
     setInput("");
-    setMessages((prev) => [...prev, { role: "user", content: q }]);
-    setIsTyping(true);
+    setMessages((prev) => [...prev, userMsg]);
+    setIsLoading(true);
+
+    let assistantSoFar = "";
+    const upsertAssistant = (nextChunk: string) => {
+      assistantSoFar += nextChunk;
+      setMessages((prev) => {
+        const last = prev[prev.length - 1];
+        if (last?.role === "assistant" && prev.length > 1 && prev[prev.length - 2]?.role === "user") {
+          return prev.map((m, i) => (i === prev.length - 1 ? { ...m, content: assistantSoFar } : m));
+        }
+        return [...prev, { role: "assistant", content: assistantSoFar }];
+      });
+    };
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/proposal-chat`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-        },
-        body: JSON.stringify({ question: q }),
+      // Send all messages except the initial greeting for context
+      const historyForAI = [...messages.slice(1), userMsg];
+      await streamChat({
+        messages: historyForAI,
+        onDelta: (chunk) => upsertAssistant(chunk),
+        onDone: () => setIsLoading(false),
       });
-
-      if (!response.ok) {
-        if (response.status === 429) {
-          throw new Error("Demasiadas consultas. Intenta de nuevo en un momento.");
-        }
-        if (response.status === 402) {
-          throw new Error("Servicio temporalmente no disponible.");
-        }
-        throw new Error("Error al procesar tu pregunta. Intenta de nuevo.");
-      }
-
-      const data = await response.json();
-      const aiResponse = data.response || data.error || "No pude procesar tu pregunta.";
-      
-      setMessages((prev) => [...prev, { role: "assistant", content: aiResponse }]);
     } catch (error) {
       console.error("Chat error:", error);
       const errorMessage = error instanceof Error ? error.message : "Error de conexión. Intenta de nuevo.";
       setMessages((prev) => [
         ...prev,
-        { 
-          role: "assistant", 
-          content: `❌ **Error**: ${errorMessage}\n\nPuedes intentar reformular tu pregunta o contactar al equipo de SYSDE para más información.`
-        }
+        {
+          role: "assistant",
+          content: `❌ **Error**: ${errorMessage}\n\nPuedes intentar reformular tu pregunta o contactar al equipo de SYSDE para más información.`,
+        },
       ]);
-    } finally {
-      setIsTyping(false);
+      setIsLoading(false);
     }
   };
 
@@ -102,7 +180,7 @@ const ProposalChatbot = () => {
                   <p className="text-[10px] opacity-80">Pregunta sobre el documento</p>
                 </div>
               </div>
-              <button onClick={() => setOpen(false)} className="hover:bg-white/20 rounded-full p-1 transition-colors">
+              <button onClick={() => setOpen(false)} className="hover:bg-primary-foreground/20 rounded-full p-1 transition-colors">
                 <X className="w-4 h-4" />
               </button>
             </div>
@@ -150,7 +228,7 @@ const ProposalChatbot = () => {
                   )}
                 </div>
               ))}
-              {isTyping && (
+              {isLoading && messages[messages.length - 1]?.role !== "assistant" && (
                 <div className="flex gap-2 items-center">
                   <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                     <Bot className="w-4 h-4 text-primary" />
@@ -181,7 +259,7 @@ const ProposalChatbot = () => {
                 />
                 <button
                   type="submit"
-                  disabled={!input.trim() || isTyping}
+                  disabled={!input.trim() || isLoading}
                   className="w-9 h-9 rounded-xl bg-primary text-primary-foreground flex items-center justify-center disabled:opacity-40 hover:bg-primary/90 transition-colors"
                 >
                   <Send className="w-4 h-4" />
