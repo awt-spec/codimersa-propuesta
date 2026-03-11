@@ -10,7 +10,7 @@ const ProposalChatbot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "¡Hola! 👋 Soy el asistente de esta propuesta. Pregúntame lo que quieras sobre la solución de SYSDE para Pentágono.",
+      content: "¡Hola! 👋 Soy el asistente de esta propuesta. Pregúntame lo que quieras sobre la solución de SYSDE para CODIMERSA.",
     },
   ]);
   const [input, setInput] = useState("");
@@ -70,7 +70,6 @@ const ProposalChatbot = () => {
 
   return (
     <>
-      {/* Floating button */}
       <AnimatePresence>
         {!open && (
           <motion.button
@@ -86,7 +85,6 @@ const ProposalChatbot = () => {
         )}
       </AnimatePresence>
 
-      {/* Chat window */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -96,7 +94,6 @@ const ProposalChatbot = () => {
             transition={{ duration: 0.2 }}
             className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)] h-[520px] max-h-[calc(100vh-4rem)] rounded-2xl border border-border bg-background shadow-2xl flex flex-col overflow-hidden"
           >
-            {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 bg-gradient-sysde text-primary-foreground">
               <div className="flex items-center gap-2">
                 <Bot className="w-5 h-5" />
@@ -110,7 +107,6 @@ const ProposalChatbot = () => {
               </button>
             </div>
 
-            {/* Messages */}
             <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
               {messages.map((msg, i) => (
                 <div key={i} className={`flex gap-2 ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
@@ -169,7 +165,6 @@ const ProposalChatbot = () => {
               <div ref={messagesEnd} />
             </div>
 
-            {/* Input */}
             <div className="px-3 py-3 border-t border-border">
               <form
                 onSubmit={(e) => {

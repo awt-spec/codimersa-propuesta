@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Car, Landmark, Users, Shield, CreditCard, FileText, Banknote } from "lucide-react";
+import { Shield, CreditCard, Banknote, FileText, Users, Landmark } from "lucide-react";
 
 const fade = (delay = 0) => ({
   initial: { opacity: 0, y: 20 } as const,
@@ -14,10 +14,10 @@ const ModulesSection = () => (
       <motion.div {...fade()} className="text-center mb-16">
         <h2 className="text-sm font-semibold uppercase tracking-wider text-sysde-red mb-2">Alcance</h2>
         <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
-          Módulos incluidos
+          Módulos a rentar
         </h3>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Alcance completo de la solución SYSDE SAF+ para Factoraje Pentágono.
+          Los módulos a ser implementados en CODIMERSA de la solución SYSDE SAF+, son los que a continuación se detallan.
         </p>
       </motion.div>
 
@@ -28,11 +28,12 @@ const ModulesSection = () => (
             <Shield className="h-5 w-5 text-sysde-red" /> Administrativos
           </h3>
           <ul className="space-y-2.5 text-sm text-muted-foreground">
-            <li className="flex gap-2"><span className="text-sysde-red font-bold">1.</span> Gestión de Seguridad</li>
+            <li className="flex gap-2"><span className="text-sysde-red font-bold">1.</span> Administración de Seguridad</li>
             <li className="flex gap-2"><span className="text-sysde-red font-bold">2.</span> Reglas de Negocio</li>
-            <li className="flex gap-2"><span className="text-sysde-red font-bold">3.</span> Módulo Clientes</li>
-            <li className="flex gap-2"><span className="text-sysde-red font-bold">4.</span> Reportería Contable</li>
-            <li className="flex gap-2"><span className="text-sysde-red font-bold">5.</span> Supervisor de Cobranza</li>
+            <li className="flex gap-2"><span className="text-sysde-red font-bold">3.</span> Administración de Clientes</li>
+            <li className="flex gap-2"><span className="text-sysde-red font-bold">4.</span> Contabilidad Financiera</li>
+            <li className="flex gap-2"><span className="text-sysde-red font-bold">5.</span> Activos Fijos</li>
+            <li className="flex gap-2"><span className="text-sysde-red font-bold">6.</span> Banca Móvil</li>
           </ul>
         </motion.div>
         <motion.div {...fade(0.1)} className="p-7 rounded-2xl border border-border bg-card">
@@ -40,10 +41,9 @@ const ModulesSection = () => (
             <CreditCard className="h-5 w-5 text-sysde-blue" /> Colocación
           </h3>
           <ul className="space-y-2.5 text-sm text-muted-foreground">
-            <li className="flex gap-2"><span className="text-sysde-blue font-bold">1.</span> Administración de Arrendamientos</li>
-            <li className="flex gap-2"><span className="text-sysde-blue font-bold">2.</span> Gestión de Préstamos</li>
-            <li className="flex gap-2"><span className="text-sysde-blue font-bold">3.</span> Créditos</li>
-            <li className="flex gap-2"><span className="text-sysde-blue font-bold">4.</span> Líneas de Crédito</li>
+            <li className="flex gap-2"><span className="text-sysde-blue font-bold">1.</span> Administración de Préstamos</li>
+            <li className="flex gap-2 pl-6">1. Créditos</li>
+            <li className="flex gap-2 pl-6">2. Líneas de Crédito</li>
           </ul>
         </motion.div>
         <motion.div {...fade(0.2)} className="p-7 rounded-2xl border border-border bg-card">
@@ -51,57 +51,19 @@ const ModulesSection = () => (
             <Banknote className="h-5 w-5 text-sysde-blue" /> Tesorería
           </h3>
           <ul className="space-y-2.5 text-sm text-muted-foreground">
-            <li className="flex gap-2"><span className="text-sysde-blue font-bold">1.</span> Administración Bancaria</li>
-            <li className="flex gap-2"><span className="text-sysde-blue font-bold">2.</span> Supervisión de Caja</li>
+            <li className="flex gap-2"><span className="text-sysde-blue font-bold">1.</span> Administración de Bancos</li>
+            <li className="flex gap-2"><span className="text-sysde-blue font-bold">2.</span> Administración de Cajas</li>
           </ul>
         </motion.div>
         <motion.div {...fade(0.3)} className="p-7 rounded-2xl border border-border bg-card">
           <h3 className="font-bold text-foreground mb-4 flex items-center gap-2">
-            <FileText className="h-5 w-5 text-sysde-red" /> Módulos Opcionales
+            <FileText className="h-5 w-5 text-sysde-red" /> Captación
           </h3>
           <ul className="space-y-2.5 text-sm text-muted-foreground">
-            <li className="flex gap-2"><span className="text-muted-foreground font-bold">•</span> Gestor de Tareas</li>
-            <li className="flex gap-2"><span className="text-muted-foreground font-bold">•</span> Fuerza de Ventas</li>
-            <li className="flex gap-2"><span className="text-muted-foreground font-bold">•</span> Análisis de Crédito</li>
-            <li className="flex gap-2"><span className="text-muted-foreground font-bold">•</span> Motor de Decisiones</li>
+            <li className="flex gap-2"><span className="text-sysde-red font-bold">1.</span> Certificados de Depósitos</li>
           </ul>
         </motion.div>
       </div>
-
-      {/* Leasing detail */}
-      <motion.div {...fade()} className="mb-12">
-        <div className="p-8 rounded-2xl border-2 border-sysde-red/20 bg-card">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-sysde-red/10 flex items-center justify-center">
-              <Car className="h-5 w-5 text-sysde-red" />
-            </div>
-            <h3 className="text-xl font-bold text-foreground">SAF+ Leasing — Arrendamientos</h3>
-          </div>
-          <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-            Plataforma de administración de carteras de arrendamiento puro y financiero.
-            Permite parametrización multi-moneda según la naturaleza del arrendamiento.
-          </p>
-          <div className="grid sm:grid-cols-2 gap-3">
-            {[
-              "Plazo y tasa de interés (fija/variable)",
-              "IVA y depósito en garantía",
-              "Penalizaciones por pago anticipado y kilometraje",
-              "Opciones de compra y valores residuales",
-              "Manejo de planes de pago",
-              "Control de inventarios de activos",
-              "Catálogo de cargos por producto",
-              "Montos previos: aportes, rentas en depósito",
-              "Multi empresa y multi sucursal",
-              "Asignación de notarios para legalización",
-            ].map((item) => (
-              <div key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
-                <span className="text-sysde-red mt-0.5 font-bold">✓</span>
-                {item}
-              </div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
 
       {/* Préstamos detail */}
       <motion.div {...fade()} className="mb-12">

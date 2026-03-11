@@ -75,7 +75,7 @@ const BenefitsAndInfra = () => (
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             { icon: Server, title: "Servidor de Aplicaciones", specs: ["CPU: 4 cores", "16 GB RAM", "128 GB SSD", "Windows Server 2019"] },
-            { icon: Database, title: "Servidor de Base de Datos", specs: ["SQL SaaS — 4 núcleos", "16 GB RAM", "500 GB almacenamiento", "MS SQL 2019"] },
+            { icon: Database, title: "Servidor de Base de Datos", specs: ["SQL SaaS — 4 núcleos", "16 GB RAM", "256 GB almacenamiento", "MS SQL 2019"] },
             { icon: HardDrive, title: "Servidor Web / Servicios", specs: ["CPU: 4 cores", "16 GB RAM", "128 GB SSD", "Linux"] },
             { icon: Wifi, title: "Servicios de Red", specs: ["Respaldo diario", "Retención 15 días", "Core Colaborativo"] },
           ].map((s) => (
@@ -97,30 +97,37 @@ const BenefitsAndInfra = () => (
         <h3 className="text-2xl font-bold text-foreground mb-6 text-center">Cronograma de implementación</h3>
         <div className="overflow-x-auto rounded-xl bg-gradient-to-br from-muted-foreground/30 to-sysde-red p-[2px]">
           <div className="rounded-xl bg-card p-1">
-            <table className="w-full min-w-[600px] text-sm">
+            <table className="w-full min-w-[700px] text-sm">
               <thead>
                 <tr className="border-b border-muted-foreground/20">
                   <th className="text-left py-3 px-4 font-semibold text-muted-foreground">Etapa</th>
                   <th className="text-left py-3 px-4 font-semibold text-muted-foreground">Tareas</th>
-                  <th className="text-center py-3 px-2 font-semibold text-sysde-red">S1</th>
-                  <th className="text-center py-3 px-2 font-semibold text-sysde-red">S2</th>
-                  <th className="text-center py-3 px-2 font-semibold text-sysde-red">S3</th>
-                  <th className="text-center py-3 px-2 font-semibold text-sysde-red">S4</th>
-                  <th className="text-center py-3 px-2 font-semibold text-sysde-red">S5</th>
+                  <th className="text-center py-3 px-2 font-semibold text-sysde-red">M1</th>
+                  <th className="text-center py-3 px-2 font-semibold text-sysde-red">M2</th>
+                  <th className="text-center py-3 px-2 font-semibold text-sysde-red">M3</th>
+                  <th className="text-center py-3 px-2 font-semibold text-sysde-red">M4</th>
+                  <th className="text-center py-3 px-2 font-semibold text-sysde-red">M5</th>
+                  <th className="text-center py-3 px-2 font-semibold text-sysde-red">M6</th>
+                  <th className="text-center py-3 px-2 font-semibold text-sysde-red">M7</th>
+                  <th className="text-center py-3 px-2 font-semibold text-sysde-red">M8</th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  { stage: "0", task: "Gestión de Proyecto", weeks: [true, true, true, true, true] },
-                  { stage: "1", task: "Configuración Cloud y Entendimiento del Negocio", weeks: [true, true, false, false, false] },
-                  { stage: "2", task: "Parametrización Base", weeks: [false, true, true, true, false] },
-                  { stage: "3", task: "Capacitación Funcional", weeks: [false, false, false, true, true] },
+                  { stage: "0", task: "Gestión de Proyecto", months: [true, true, true, true, true, true, true, true] },
+                  { stage: "1", task: "Planificación y Análisis", months: [true, true, false, false, false, false, false, false] },
+                  { stage: "2", task: "Desarrollo de Adaptaciones", months: [false, true, true, true, false, false, false, false] },
+                  { stage: "3", task: "Parametrización Base", months: [false, false, true, true, true, false, false, false] },
+                  { stage: "4", task: "Capacitación", months: [false, false, false, false, true, true, false, false] },
+                  { stage: "5", task: "Pruebas Integrales", months: [false, false, false, false, false, true, true, false] },
+                  { stage: "6", task: "Puesta en Producción", months: [false, false, false, false, false, false, true, true] },
+                  { stage: "7", task: "Acompañamiento", months: [false, false, false, false, false, false, false, true] },
                 ].map((row, i) => (
                   <tr key={row.stage} className="border-b border-muted-foreground/10">
                     <td className="py-3 px-4 font-mono font-bold text-sysde-red">{row.stage}</td>
                     <td className="py-3 px-4 text-foreground">{row.task}</td>
-                    {row.weeks.map((active, wi) => (
-                      <td key={wi} className="py-3 px-2 text-center">
+                    {row.months.map((active, mi) => (
+                      <td key={mi} className="py-3 px-2 text-center">
                         {active && (
                           <div className={`w-6 h-2 rounded-full mx-auto ${i % 2 === 0 ? 'bg-sysde-red' : 'bg-muted-foreground/50'}`} />
                         )}
@@ -133,7 +140,7 @@ const BenefitsAndInfra = () => (
           </div>
         </div>
         <p className="text-xs text-center mt-4 text-muted-foreground">
-          Modelo ON-CLOUD — No incluye desarrollo de interfaces ni requerimientos adicionales.
+          Modelo ON-CLOUD — El cronograma incluye gestión del proyecto, implementación, capacitación y acompañamiento.
         </p>
       </motion.div>
     </div>

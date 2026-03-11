@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const ExecutiveLetter = () => {
   const paragraphs = [
-    "Esperando que se encuentren bien, les escribo para dar seguimiento a nuestra reciente conversación, así como a la presentación de nuestra solución integral. Con base en los puntos discutidos y en las necesidades específicas que ustedes han mencionado, hemos preparado la presente propuesta de negocios para la implementación de la solución SYSDE SAF PLUS en Factoraje Pentágono.",
+    "Esperando que se encuentren bien, les escribo para dar seguimiento a nuestra reciente conversación, así como a la presentación de nuestra solución integral. Con base en los puntos discutidos y en las necesidades específicas que ustedes han mencionado, hemos preparado la presente propuesta de negocios para la implementación de la solución SYSDE SAF PLUS en CODIMERSA.",
     "En esta propuesta, hemos considerado la implementación bajo el modelo ON-CLOUD (en la nube) de nuestra plataforma, el cual permite un despliegue ágil y flexible, alineado con las mejores prácticas de la industria. Este enfoque asegura una rápida adopción y minimiza las necesidades de infraestructura interna, facilitando así la gestión y operación diaria de sus procesos financieros y administrativos.",
     "Adjunto encontrará el documento detallado con todos los elementos necesarios para la evaluación de la propuesta, incluyendo los alcances del proyecto, la metodología de implementación, los plazos estimados y los costos asociados.",
     "Quedamos a su disposición para cualquier consulta o aclaración que requiera, así como para coordinar una reunión donde podamos profundizar en los detalles de esta propuesta.",
@@ -21,9 +21,9 @@ const ExecutiveLetter = () => {
           <h2 className="text-sm font-semibold uppercase tracking-wider text-sysde-red mb-2">
             Presentación Ejecutiva
           </h2>
-          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Factoraje Pentágono</h3>
-          <p className="text-muted-foreground mb-8">
-            Guillermo Miguel Saca · Ricardo Saca · Gerardo Saca
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">CODIMERSA</h3>
+          <p className="text-muted-foreground mb-2">
+            11 de Marzo de 2026
           </p>
 
           <motion.p
@@ -33,7 +33,7 @@ const ExecutiveLetter = () => {
             transition={{ delay: 0.1, duration: 0.5 }}
             className="text-muted-foreground leading-relaxed mb-4"
           >
-            Estimado equipo de Factoraje Pentágono:
+            Estimado equipo de CODIMERSA:
           </motion.p>
 
           <div className="space-y-4">

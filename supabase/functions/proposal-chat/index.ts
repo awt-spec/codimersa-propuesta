@@ -5,119 +5,88 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-// Knowledge base del documento de propuesta
 const documentContent = `
-# Propuesta Comercial SYSDE para Pentágono - Leasing, Préstamos y Factoraje
+# Propuesta Comercial SYSDE para CODIMERSA — 11 de Marzo de 2026
 
 ## Información Principal:
-- **Cliente**: Pentágono
-- **Solución**: Sistema integral para Leasing, Arrendamiento, Préstamos y Factoraje
+- **Cliente**: CODIMERSA
+- **Solución**: Sistema integral SYSDE SAF+ para Préstamos, Cajas, Cuentas de efectivo, Ahorros Fijos, Contabilidad y Tesorería
 - **Empresa**: SYSDE - Especialistas en soluciones tecnológicas para el sector financiero
+- **Modelo**: ON-CLOUD (en la nube)
 
 ## Módulos del Sistema:
 
-### 1. Módulo de Originación
-- Gestión de solicitudes de crédito
-- Análisis crediticio automatizado
-- Flujo de aprobación configurable
-- Integración con burós de crédito
-- Scoring automático
+### Administrativos:
+1. Administración de Seguridad
+2. Reglas de Negocio
+3. Administración de Clientes
+4. Contabilidad Financiera
+5. Activos Fijos
+6. Banca Móvil
 
-### 2. Módulo de Cartera
-- Administración de contratos activos
-- Gestión de amortizaciones
-- Seguimiento de pagos
-- Control de vencimientos
-- Reportes de cartera
+### Colocación:
+1. Administración de Préstamos
+   - Créditos
+   - Líneas de Crédito
 
-### 3. Módulo de Cobranza
-- Seguimiento de morosidad
-- Gestión de cobro preventivo y correctivo
-- Estrategias de cobranza
-- Reportes de recuperación
-- Integración con despachos
+### Tesorería:
+1. Administración de Bancos
+2. Administración de Cajas
 
-### 4. Módulo de Contabilidad
-- Integración contable automática
-- Generación de pólizas
-- Conciliaciones bancarias
-- Estados financieros
-- Cumplimiento IFRS
+### Captación:
+1. Certificados de Depósitos
 
-### 5. Módulo de Tesorería
-- Control de flujos de efectivo
-- Administración de dispersiones
-- Gestión de fondeos
-- Conciliación bancaria
-- Reportes de liquidez
+## Precios y Costos:
 
-### 6. Módulo de Reportes
-- Dashboards ejecutivos en tiempo real
-- Reportes regulatorios (CNBV/CONDUSEF)
-- Análisis de portafolio
-- Indicadores KPI
-- Exportación a múltiples formatos
+### Renta Mensual:
+- 10 usuarios SYSDE SAF+: USD $10,000.00 mensuales
+- Cada usuario adicional: USD $55.00 mensuales
 
-## Precios y Costos (Renta Mensual ON-CLOUD):
-Modelo SaaS basado en número de contratos activos:
-| Contratos | Monto Mensual USD |
-|-----------|-------------------|
-| 0 - 300   | $3,999.00         |
-| 301 - 400 | $4,399.00         |
-| 401 - 500 | $4,699.00         |
-| 501 - 600 | $4,999.00         |
-| 601 - 700 | $5,399.00         |
-| 701 - 800 | $5,699.00         |
-| 801 - 1000| $5,999.00         |
-| +1001     | Por determinar    |
+### Set Up Fee:
+- Pago inicial (una vez, a la firma): USD $50,000.00
+- 12 cuotas mensuales de: USD $17,500.00
+- Total Set Up Fee: USD $260,000.00
 
-## Servicio Ilimitado SYSDE (incluido en la renta):
-- Licencia SYSDE SAF+ (todos los módulos)
-- Licencias de aplicación ilimitadas
-- Capacitación continua del equipo
-- Asistencia correctiva permanente
-- Mantenimiento y actualizaciones
-- Soporte técnico incluido
+## Servicios Incluidos en la Renta:
+- Licencia SYSDE SAF+ para 10 usuarios
+- Gestión del Proyecto
+- Planificación y Análisis
+- Preparación para la Implementación
+- Desarrollo de Interfaces
+- Parametrización del aplicativo
+- Capacitación progresiva
+- Pruebas Integrales (Certificación)
+- Puesta en Producción
+- Acompañamiento a la operación
 
-## Método de Pago:
-- Pago mensual por adelantado, el primer día hábil de cada mes
-- El pago inicial se requiere al momento de la firma del contrato
+## Forma de Pago:
+- Fee Inicial: Pago de USD $50,000.00 + 12 cuotas de USD $17,500.00
+- Renta Mensual: Se factura el primer día hábil de cada mes a partir de la firma del contrato
 
-## Timeline de Implementación:
-- **Fase 1** (Semanas 1-4): Configuración base e infraestructura
-- **Fase 2** (Semanas 5-10): Módulos core (Originación, Cartera, Cobranza)
-- **Fase 3** (Semanas 11-14): Integración (Contabilidad, Tesorería, Reportes)
-- **Fase 4** (Semanas 15-16): Go-Live (Pruebas UAT, capacitación, arranque)
-- **Tiempo total**: 3 a 4 meses
+## Timeline de Implementación (8 meses):
+- Etapa 0: Gestión de Proyecto (M1-M8)
+- Etapa 1: Planificación y Análisis (M1-M2)
+- Etapa 2: Desarrollo de Adaptaciones (M2-M4)
+- Etapa 3: Parametrización Base (M3-M5)
+- Etapa 4: Capacitación (M5-M6)
+- Etapa 5: Pruebas Integrales (M6-M7)
+- Etapa 6: Puesta en Producción (M7-M8)
+- Etapa 7: Acompañamiento (M8)
 
-## Beneficios Principales:
-- ✅ **Automatización**: Reduce tiempos operativos hasta un 60%
-- ✅ **Cumplimiento regulatorio**: Reportes CNBV/CONDUSEF integrados
-- ✅ **Escalabilidad**: Arquitectura cloud que crece con la operación
-- ✅ **Visibilidad**: Dashboards en tiempo real del portafolio
-- ✅ **Seguridad**: Encriptación, auditoría y control de accesos
-- ✅ **Integración**: APIs abiertas para conectar sistemas existentes
+## No incluido:
+- Interfaces personalizadas (se simplifican con Core APIs)
+- Desarrollo de requerimientos adicionales
+- Migraciones de datos
+- Integraciones con terceros
 
-## Infraestructura Propuesta:
-- **Cloud hosting**: Alta disponibilidad (99.9% uptime)
-- **Servidor**: 4 cores, 16 GB RAM, almacenamiento SSD
-- **Seguridad**: Certificados SSL, firewall, backups automáticos
-- **Base de datos**: PostgreSQL con réplicas de lectura
-- **CI/CD**: Despliegues automatizados con zero-downtime
-
-## Soporte y Mantenimiento:
-- Soporte técnico en horario laboral (L-V 9:00-18:00)
-- Sistema de tickets con SLA definidos
-- Actualizaciones de seguridad y funcionales
-- Base de conocimiento y documentación
-- Capacitación inicial y sesiones de refuerzo
+## Infraestructura ON-CLOUD:
+- Servidor de Aplicaciones: 4 cores, 16 GB RAM, 128 GB SSD, Windows Server 2019
+- Servidor de Base de Datos: SQL SaaS, 4 núcleos, 16 GB RAM, 256 GB, MS SQL 2019
+- Servidor Web/Servicios: 4 cores, 16 GB RAM, 128 GB SSD, Linux
+- Servicios de Red: Respaldo diario, retención 15 días
 
 ## Acerca de SYSDE:
-SYSDE es una empresa especializada en soluciones tecnológicas para el sector financiero, con amplia experiencia en:
-- Instituciones de leasing y arrendamiento
-- Empresas de factoraje financiero
-- Sofomes y entidades de crédito
-- Consultores especializados en cumplimiento regulatorio
+SYSDE es una empresa especializada en soluciones tecnológicas para el sector financiero.
 `;
 
 serve(async (req) => {
@@ -133,21 +102,18 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const systemPrompt = `Eres un asistente especializado en la propuesta comercial de SYSDE para Pentágono. Tu trabajo es responder preguntas sobre esta propuesta de manera clara, profesional y útil.
+    const systemPrompt = `Eres un asistente especializado en la propuesta comercial de SYSDE para CODIMERSA. Tu trabajo es responder preguntas sobre esta propuesta de manera clara, profesional y útil.
 
 INFORMACIÓN DEL DOCUMENTO:
 ${documentContent}
 
 INSTRUCCIONES:
-1. Responde SOLO sobre la información contenida en la propuesta de SYSDE para Pentágono
+1. Responde SOLO sobre la información contenida en la propuesta de SYSDE para CODIMERSA
 2. Si la pregunta no está relacionada con el documento, redirige educadamente hacia los temas de la propuesta
 3. Sé claro, conciso y profesional en tus respuestas
 4. Usa emojis moderadamente para hacer las respuestas más amigables
 5. Si no tienes información específica sobre algo, sugiere contactar al equipo de SYSDE
-6. Formatea las respuestas en markdown para mejor legibilidad
-
-EJEMPLO DE RESPUESTA:
-Si preguntan sobre precios: "💰 **Inversión propuesta:**\n- Implementación: $XX,XXX USD\n- Renta mensual: $X,XXX USD\n\n*Los montos exactos se definirán en la propuesta formal.*"`;
+6. Formatea las respuestas en markdown para mejor legibilidad`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -169,37 +135,22 @@ Si preguntan sobre precios: "💰 **Inversión propuesta:**\n- Implementación: 
     if (!response.ok) {
       if (response.status === 429) {
         return new Response(
-          JSON.stringify({ 
-            error: "Demasiadas consultas. Por favor intenta de nuevo en un momento." 
-          }), 
-          {
-            status: 429,
-            headers: { ...corsHeaders, "Content-Type": "application/json" },
-          }
+          JSON.stringify({ error: "Demasiadas consultas. Por favor intenta de nuevo en un momento." }), 
+          { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
       if (response.status === 402) {
         return new Response(
-          JSON.stringify({ 
-            error: "Servicio de IA temporalmente no disponible. Por favor contacta al soporte." 
-          }), 
-          {
-            status: 402,
-            headers: { ...corsHeaders, "Content-Type": "application/json" },
-          }
+          JSON.stringify({ error: "Servicio de IA temporalmente no disponible." }), 
+          { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
       
       const errorText = await response.text();
       console.error("AI gateway error:", response.status, errorText);
       return new Response(
-        JSON.stringify({ 
-          error: "Error del servicio de IA. Por favor intenta de nuevo." 
-        }), 
-        {
-          status: 500,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        }
+        JSON.stringify({ error: "Error del servicio de IA. Por favor intenta de nuevo." }), 
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
@@ -209,22 +160,14 @@ Si preguntan sobre precios: "💰 **Inversión propuesta:**\n- Implementación: 
 
     return new Response(
       JSON.stringify({ response: aiResponse }),
-      {
-        status: 200,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      }
+      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
 
   } catch (error) {
     console.error("Chat error:", error);
     return new Response(
-      JSON.stringify({ 
-        error: error instanceof Error ? error.message : "Error desconocido" 
-      }), 
-      {
-        status: 500,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      }
+      JSON.stringify({ error: error instanceof Error ? error.message : "Error desconocido" }), 
+      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
 });

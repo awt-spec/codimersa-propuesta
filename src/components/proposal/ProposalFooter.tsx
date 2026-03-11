@@ -15,7 +15,7 @@ const ProposalFooter = () => (
           <img src={sysdeLogoSrc} alt="SYSDE" className="h-8 brightness-0 invert" />
           <div>
             <p className="font-semibold text-primary-foreground">SYSDE Inc.</p>
-            <p className="text-xs opacity-60">Propuesta comercial para Factoraje Pentágono</p>
+            <p className="text-xs opacity-60">Propuesta comercial para CODIMERSA — 11 de Marzo de 2026</p>
           </div>
         </div>
         <div className="flex items-center gap-6 text-sm">
