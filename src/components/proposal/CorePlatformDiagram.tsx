@@ -42,20 +42,8 @@ const CorePlatformDiagram = () => {
     <div className="w-full max-w-3xl mx-auto">
       <svg viewBox="0 0 1000 1000" className="w-full h-auto">
         <defs>
-          {/* Core gradient */}
-          <radialGradient id="coreGrad" cx="40%" cy="40%">
-            <stop offset="0%" stopColor="hsl(207, 60%, 70%)" stopOpacity="0.9" />
-            <stop offset="60%" stopColor="hsl(207, 60%, 55%)" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="hsl(207, 60%, 45%)" stopOpacity="0.2" />
-          </radialGradient>
-          {/* Node gradient */}
-          <radialGradient id="nodeGrad" cx="35%" cy="35%">
-            <stop offset="0%" stopColor="hsl(355, 72%, 48%)" />
-            <stop offset="100%" stopColor="hsl(355, 72%, 36%)" />
-          </radialGradient>
-          {/* Glow filter */}
           <filter id="coreGlow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="20" result="blur" />
+            <feGaussianBlur stdDeviation="15" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -92,31 +80,19 @@ const CorePlatformDiagram = () => {
           />
         ))}
 
-        {/* Core circle with glow */}
+        {/* Core circle flat */}
         <motion.circle
           cx={cx}
           cy={cy}
           r={coreRadius}
-          fill="url(#coreGrad)"
+          fill="hsl(207, 60%, 92%)"
+          stroke="hsl(207, 60%, 80%)"
+          strokeWidth="2"
           filter="url(#coreGlow)"
           initial={{ scale: 0 }}
           whileInView={{ scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, type: "spring" }}
-          style={{ transformOrigin: `${cx}px ${cy}px` }}
-        />
-        <motion.circle
-          cx={cx}
-          cy={cy}
-          r={coreRadius + 15}
-          fill="none"
-          stroke="hsl(207, 60%, 55%)"
-          strokeWidth="1"
-          opacity="0.15"
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, type: "spring" }}
           style={{ transformOrigin: `${cx}px ${cy}px` }}
         />
 
@@ -184,8 +160,8 @@ const CorePlatformDiagram = () => {
               cx={node.x}
               cy={node.y}
               r={nodeRadius}
-              fill="url(#nodeGrad)"
-              className="cursor-pointer hover:opacity-90 transition-opacity"
+              fill="hsl(355, 72%, 42%)"
+              className="cursor-pointer"
             />
             {/* Node label - split into lines */}
             {(() => {
