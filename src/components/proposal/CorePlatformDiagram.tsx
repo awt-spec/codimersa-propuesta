@@ -9,7 +9,7 @@ const services = [
   "Buró de crédito",
   "Educación financiera",
   "KYC",
-  "Dispositivos IoT",
+  "Entre otros...",
   "Pasarela de pago",
   "Pagos de créditos mobile",
   "Aplicaciones móviles",
