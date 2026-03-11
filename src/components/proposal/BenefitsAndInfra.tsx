@@ -51,10 +51,10 @@ const BenefitsAndInfra = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="flex gap-4 p-6 rounded-2xl border border-border bg-card"
+            className="flex gap-4 p-6 rounded-2xl border border-border bg-card hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
           >
-            <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0">
-              <b.icon className="h-5 w-5 text-sysde-blue" />
+            <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+              <b.icon className="h-5 w-5 text-sysde-blue transition-colors duration-300" />
             </div>
             <div>
               <h3 className="font-semibold text-foreground mb-1">{b.title}</h3>

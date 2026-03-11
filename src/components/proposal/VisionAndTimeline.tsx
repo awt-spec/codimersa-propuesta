@@ -42,9 +42,9 @@ const VisionAndTimeline = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, delay: i * 0.15 }}
-            className="text-center p-6"
+            className="text-center p-6 rounded-2xl hover:bg-primary-foreground/10 hover:-translate-y-1 transition-all duration-300"
           >
-            <div className="w-14 h-14 rounded-2xl bg-primary-foreground/15 flex items-center justify-center mx-auto mb-5">
+            <div className="w-14 h-14 rounded-2xl bg-primary-foreground/15 flex items-center justify-center mx-auto mb-5 transition-transform duration-300 group-hover:scale-110">
               <v.icon className="h-6 w-6" />
             </div>
             <h3 className="text-lg font-semibold mb-2">{v.title}</h3>
