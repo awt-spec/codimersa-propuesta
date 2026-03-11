@@ -155,7 +155,7 @@ const BenefitsAndInfra = () => (
                 transition={{ duration: 0.5, delay: i * 0.12 }}
                 className="group"
               >
-                <div className="relative p-5 rounded-xl border border-sysde-blue/15 bg-[hsl(var(--sysde-dark)/0.8)] backdrop-blur-md hover:border-sysde-blue/40 transition-all duration-300 overflow-hidden">
+                <div className="relative p-5 rounded-xl border border-primary-foreground/20 bg-primary-foreground/10 backdrop-blur-md hover:border-primary-foreground/40 transition-all duration-300 overflow-hidden">
                   {/* Corner accents */}
                   <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-sysde-blue/30 rounded-tl-xl" />
                   <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-sysde-blue/30 rounded-br-xl" />
