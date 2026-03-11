@@ -248,7 +248,7 @@ const BenefitsAndInfra = () => (
             className="relative z-10 mt-6 flex flex-wrap justify-center gap-2"
           >
             {["Azure Defender", "Auto-Scaling", "Geo-Redundancia", "Azure Monitor", "Key Vault"].map((feat) => (
-              <span key={feat} className="text-[9px] font-mono px-3 py-1 rounded-full border border-sysde-blue/20 text-sysde-blue/60 bg-sysde-blue/5">
+              <span key={feat} className="text-[9px] font-mono px-3 py-1 rounded-full border border-primary-foreground/20 text-primary-foreground/60 bg-primary-foreground/5">
                 {feat}
               </span>
             ))}
