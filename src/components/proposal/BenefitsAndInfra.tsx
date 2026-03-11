@@ -221,11 +221,11 @@ const BenefitsAndInfra = () => (
           </div>
 
           {/* Status bar */}
-          <div className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4 md:gap-6 text-[10px] font-mono text-muted-foreground/50">
+          <div className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4 md:gap-6 text-[10px] font-mono text-primary-foreground/60">
             <span className="flex items-center gap-1.5">
               <motion.div
                 className="w-1.5 h-1.5 rounded-full"
-                style={{ backgroundColor: "hsl(142, 71%, 45%)" }}
+                style={{ backgroundColor: "hsl(142, 71%, 65%)" }}
                 animate={{ opacity: [1, 0.3, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               />
