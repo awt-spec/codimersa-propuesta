@@ -155,7 +155,7 @@ const BenefitsAndInfra = () => (
                 transition={{ duration: 0.5, delay: i * 0.12 }}
                 className="group"
               >
-                <div className="relative p-5 rounded-xl border border-primary-foreground/20 bg-primary-foreground/10 backdrop-blur-md hover:border-primary-foreground/40 transition-all duration-300 overflow-hidden">
+                <div className="relative p-5 rounded-xl border border-primary-foreground/25 bg-primary-foreground/10 backdrop-blur-md hover:border-primary-foreground/50 transition-all duration-300 overflow-hidden">
                   {/* Corner accents */}
                    <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-primary-foreground/30 rounded-tl-xl" />
                   <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-primary-foreground/30 rounded-br-xl" />
@@ -165,42 +165,42 @@ const BenefitsAndInfra = () => (
 
                   <div className="relative">
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-lg bg-gradient-sysde-blue flex items-center justify-center shadow-[0_0_20px_hsl(var(--sysde-blue)/0.25)]">
-                        <node.icon className="h-5 w-5 text-secondary-foreground" />
+                      <div className="w-10 h-10 rounded-lg bg-primary-foreground/20 flex items-center justify-center">
+                        <node.icon className="h-5 w-5 text-primary-foreground" />
                       </div>
                       <div className="flex-1">
                         <h4 className="font-bold text-sm text-primary-foreground">{node.title}</h4>
                         <div className="flex items-center gap-1 mt-0.5">
                           <motion.div
                             className="w-1.5 h-1.5 rounded-full"
-                            style={{ backgroundColor: "hsl(142, 71%, 45%)" }}
+                            style={{ backgroundColor: "hsl(142, 71%, 65%)" }}
                             animate={{ opacity: [1, 0.4, 1] }}
                             transition={{ duration: 2, repeat: Infinity }}
                           />
-                          <span className="text-[10px] font-mono" style={{ color: "hsl(142, 71%, 45%, 0.8)" }}>ACTIVE</span>
+                          <span className="text-[10px] font-mono" style={{ color: "hsl(142, 71%, 65%)" }}>ACTIVE</span>
                         </div>
                       </div>
                     </div>
 
                     <div className="space-y-1.5 font-mono">
-                      <p className="text-xs text-secondary/80">{node.specs}</p>
-                      <p className="text-[10px] text-muted-foreground/60">{node.os}</p>
+                      <p className="text-xs text-primary-foreground/90">{node.specs}</p>
+                      <p className="text-[10px] text-primary-foreground/60">{node.os}</p>
                     </div>
 
                     {/* Metric bars */}
                     <div className="mt-3 space-y-1">
                       {["CPU", "MEM", "I/O"].map((label, li) => (
                         <div key={label} className="flex items-center gap-2">
-                          <span className="text-[9px] text-muted-foreground/50 w-6 font-mono">{label}</span>
-                          <div className="flex-1 h-1 rounded-full bg-secondary/10 overflow-hidden">
+                          <span className="text-[9px] text-primary-foreground/50 w-6 font-mono">{label}</span>
+                          <div className="flex-1 h-1 rounded-full bg-primary-foreground/15 overflow-hidden">
                             <motion.div
                               className="h-full rounded-full"
                               style={{
                                 background: li === 0
-                                  ? "linear-gradient(90deg, hsl(var(--sysde-blue)), hsl(142, 71%, 45%))"
+                                  ? "linear-gradient(90deg, hsl(200, 80%, 70%), hsl(142, 71%, 65%))"
                                   : li === 1
-                                  ? "hsl(var(--sysde-blue))"
-                                  : "hsl(var(--sysde-red))",
+                                  ? "hsl(200, 80%, 70%)"
+                                  : "hsl(45, 90%, 65%)",
                               }}
                               initial={{ width: 0 }}
                               whileInView={{ width: `${20 + i * 12 + li * 8}%` }}
@@ -208,7 +208,7 @@ const BenefitsAndInfra = () => (
                               transition={{ duration: 1.5, delay: i * 0.15 + li * 0.2 }}
                             />
                           </div>
-                          <span className="text-[8px] text-muted-foreground/40 font-mono w-6 text-right">
+                          <span className="text-[8px] text-primary-foreground/50 font-mono w-6 text-right">
                             {20 + i * 12 + li * 8}%
                           </span>
                         </div>
@@ -221,11 +221,11 @@ const BenefitsAndInfra = () => (
           </div>
 
           {/* Status bar */}
-          <div className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4 md:gap-6 text-[10px] font-mono text-muted-foreground/50">
+          <div className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4 md:gap-6 text-[10px] font-mono text-primary-foreground/60">
             <span className="flex items-center gap-1.5">
               <motion.div
                 className="w-1.5 h-1.5 rounded-full"
-                style={{ backgroundColor: "hsl(142, 71%, 45%)" }}
+                style={{ backgroundColor: "hsl(142, 71%, 65%)" }}
                 animate={{ opacity: [1, 0.3, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               />
@@ -248,7 +248,7 @@ const BenefitsAndInfra = () => (
             className="relative z-10 mt-6 flex flex-wrap justify-center gap-2"
           >
             {["Azure Defender", "Auto-Scaling", "Geo-Redundancia", "Azure Monitor", "Key Vault"].map((feat) => (
-              <span key={feat} className="text-[9px] font-mono px-3 py-1 rounded-full border border-primary-foreground/20 text-primary-foreground/60 bg-primary-foreground/5">
+              <span key={feat} className="text-[9px] font-mono px-3 py-1 rounded-full border border-primary-foreground/30 text-primary-foreground/80 bg-primary-foreground/10">
                 {feat}
               </span>
             ))}
