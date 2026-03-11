@@ -23,12 +23,12 @@ const VisionAndTimeline = () => (
           {
             icon: Rocket,
             title: "Time to Market",
-            desc: "Apoyar a Factoraje Pentágono a operar de forma automatizada en muy corto plazo, con productos y servicios que satisfagan las necesidades de sus clientes.",
+            desc: "Apoyar a CODIMERSA a operar de forma automatizada en muy corto plazo, con productos y servicios que satisfagan las necesidades de sus clientes.",
           },
           {
             icon: Target,
             title: "Foco en el Negocio",
-            desc: "Garantizar que Factoraje Pentágono se focalice en los factores clave de su ventaja competitiva, delegando lo tecnológico a SYSDE.",
+            desc: "Garantizar que CODIMERSA se focalice en los factores clave de su ventaja competitiva, delegando lo tecnológico a SYSDE.",
           },
           {
             icon: TrendingUp,
@@ -52,7 +52,6 @@ const VisionAndTimeline = () => (
           </motion.div>
         ))}
       </div>
-
     </div>
   </section>
 );

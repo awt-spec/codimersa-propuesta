@@ -3,10 +3,8 @@ import sysdeLogoSrc from "@/assets/sysde-logo.png";
 
 const ProposalHero = () => (
   <section className="relative min-h-[85vh] flex items-center justify-center bg-gradient-sysde text-primary-foreground overflow-hidden">
-    {/* Diagonal white cut */}
     <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-background" style={{ clipPath: "polygon(100% 0%, 100% 100%, 0% 100%)" }} />
 
-    {/* Animated background circles */}
     <motion.div
       className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full border border-primary-foreground/5"
       initial={{ scale: 0.8, opacity: 0 }}
@@ -70,7 +68,12 @@ const ProposalHero = () => (
           <div className="w-px bg-primary-foreground/20 hidden sm:block" />
           <div>
             <span className="text-sm opacity-70 block mb-1">Preparado para:</span>
-            <span className="font-bold text-lg">FACTORAJE PENTÁGONO</span>
+            <span className="font-bold text-lg">CODIMERSA</span>
+          </div>
+          <div className="w-px bg-primary-foreground/20 hidden sm:block" />
+          <div>
+            <span className="text-sm opacity-70 block mb-1">Fecha:</span>
+            <span className="font-bold text-lg">11 de Marzo, 2026</span>
           </div>
         </motion.div>
 

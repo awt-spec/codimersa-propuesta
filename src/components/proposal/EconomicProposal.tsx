@@ -1,17 +1,6 @@
 import { motion } from "framer-motion";
 import { CheckCircle2, AlertCircle, CreditCard, Infinity } from "lucide-react";
 
-const pricingTiers = [
-  { contracts: "0 - 300", price: "$3,999.00" },
-  { contracts: "301 - 400", price: "$4,399.00" },
-  { contracts: "401 - 500", price: "$4,699.00" },
-  { contracts: "501 - 600", price: "$4,999.00" },
-  { contracts: "601 - 700", price: "$5,399.00" },
-  { contracts: "701 - 800", price: "$5,699.00" },
-  { contracts: "801 - 1000", price: "$5,999.00" },
-  { contracts: "+1001", price: "Por determinar" },
-];
-
 const EconomicProposal = () => (
   <section className="py-20 md:py-28 bg-background">
     <div className="container px-6 max-w-5xl">
@@ -24,15 +13,14 @@ const EconomicProposal = () => (
       >
         <h2 className="text-sm font-semibold uppercase tracking-wider text-sysde-red mb-2">Inversión</h2>
         <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
-          ON-CLOUD: Inversión Financiera
+          ON-CLOUD: Inversión Económica
         </h3>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          Proveemos un modelo de Software as a Service (SaaS) que permite a Factoraje Pentágono utilizar nuestra plataforma SYSDE SAF+. 
-          Nuestra plataforma brinda soporte técnico extensivo para la gestión de administración, colocación y operaciones de tesorería.
+          La inversión económica requerida para la renta e implementación del sistema SYSDE SAF+, de acuerdo al alcance y plazos planteados en la presente propuesta para CODIMERSA.
         </p>
       </motion.div>
 
-      {/* Pricing Table */}
+      {/* Monthly Pricing */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -41,33 +29,72 @@ const EconomicProposal = () => (
         className="mb-12"
       >
         <div className="overflow-hidden rounded-2xl border border-border bg-card">
-          {/* Table Header */}
-          <div className="grid grid-cols-2 bg-sysde-red text-white">
+          <div className="grid grid-cols-3 bg-sysde-red text-white">
             <div className="px-6 py-4 font-semibold text-center border-r border-sysde-red/30">
-              Contratos
+              Concepto
+            </div>
+            <div className="px-6 py-4 font-semibold text-center border-r border-sysde-red/30">
+              Detalle
             </div>
             <div className="px-6 py-4 font-semibold text-center">
-              Monto Mensual en USD
+              Monto USD
             </div>
           </div>
-          {/* Table Body */}
-          {pricingTiers.map((tier, index) => (
+          <div className="grid grid-cols-3 border-b border-border bg-card">
+            <div className="px-6 py-5 text-foreground font-medium border-r border-border">
+              Renta Mensual
+            </div>
+            <div className="px-6 py-5 text-muted-foreground text-sm border-r border-border">
+              (10) Usuarios SYSDE SAF+
+            </div>
+            <div className="px-6 py-5 text-center text-foreground font-bold text-xl">
+              $10,000.00
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Setup Fee */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="mb-12"
+      >
+        <div className="overflow-hidden rounded-2xl border border-border bg-card">
+          <div className="grid grid-cols-2 bg-sysde-blue text-white">
+            <div className="px-6 py-4 font-semibold border-r border-sysde-blue/30">
+              Set Up Fee
+            </div>
+            <div className="px-6 py-4 font-semibold text-center">
+              Precio USD
+            </div>
+          </div>
+          {[
+            { concept: "Pago inicial — Una única vez a la firma del contrato", amount: "$50,000.00" },
+            { concept: "Tractos del mes 1 al mes 12: USD $17,500.00 mensuales por concepto de Set Up Fee", amount: "$17,500.00 / mes" },
+            { concept: "Total Set Up Fee: Pago inicial + 12 cuotas", amount: "$260,000.00", highlight: true },
+          ].map((row, index) => (
             <div
-              key={tier.contracts}
-              className={`grid grid-cols-2 ${index % 2 === 0 ? "bg-card" : "bg-muted/30"} ${index !== pricingTiers.length - 1 ? "border-b border-border" : ""}`}
+              key={index}
+              className={`grid grid-cols-2 border-b border-border ${row.highlight ? "bg-sysde-red/5" : index % 2 === 0 ? "bg-card" : "bg-muted/30"}`}
             >
-              <div className="px-6 py-4 text-center text-foreground font-medium border-r border-border">
-                {tier.contracts}
+              <div className={`px-6 py-4 text-sm border-r border-border ${row.highlight ? "text-foreground font-semibold" : "text-muted-foreground"}`}>
+                {row.concept}
               </div>
-              <div className="px-6 py-4 text-center text-foreground">
-                USD {tier.price}
+              <div className={`px-6 py-4 text-center ${row.highlight ? "text-sysde-red font-bold text-lg" : "text-foreground font-medium"}`}>
+                {row.amount}
               </div>
             </div>
           ))}
         </div>
+        <p className="text-xs text-muted-foreground mt-3 italic">
+          * Cada usuario adicional de SYSDE SAF+ tiene un costo mensual de USD $55.00
+        </p>
       </motion.div>
 
-      {/* Unlimited Service Card */}
+      {/* Included Services */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -82,17 +109,21 @@ const EconomicProposal = () => (
               <Infinity className="h-6 w-6 text-sysde-blue" />
             </div>
             <div>
-              <h4 className="font-bold text-foreground text-xl mb-2">Servicio Ilimitado SYSDE</h4>
+              <h4 className="font-bold text-foreground text-xl mb-2">Servicios Incluidos en la Renta</h4>
               <p className="text-muted-foreground mb-4">
-                La renta mensual incluye todos los servicios de la plataforma sin restricciones:
+                La renta incluye una (1) licencia de uso para 10 usuarios del aplicativo SYSDE SAF+, mientras el servicio mensual esté activo/vigente:
               </p>
               <ul className="grid sm:grid-cols-2 gap-3">
                 {[
-                  "Licencia SYSDE SAF+ (todos los módulos)",
-                  "Licencias de aplicación ilimitadas",
-                  "Capacitación continua del equipo",
-                  "Asistencia correctiva permanente",
-                  "Mantenimiento y actualizaciones",
+                  "Gestión del Proyecto",
+                  "Planificación y Análisis",
+                  "Preparación para la Implementación",
+                  "Desarrollo de Interfaces",
+                  "Parametrización del aplicativo",
+                  "Capacitación progresiva",
+                  "Pruebas Integrales (Certificación)",
+                  "Puesta en Producción",
+                  "Acompañamiento a la operación",
                   "Soporte técnico incluido",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -116,30 +147,39 @@ const EconomicProposal = () => (
       >
         <h4 className="font-bold text-foreground text-xl mb-4 flex items-center gap-2">
           <CreditCard className="h-5 w-5 text-sysde-red" />
-          Método de Pago
+          Forma de Pago
         </h4>
-        <p className="text-muted-foreground mb-4">
-          El método de pago para la suscripción mensual será el siguiente:
-        </p>
         <div className="overflow-hidden rounded-xl border border-border bg-card">
           <div className="grid grid-cols-2 bg-sysde-red text-white">
             <div className="px-6 py-3 font-semibold border-r border-sysde-red/30">Hito</div>
-            <div className="px-6 py-3 font-semibold text-center">Periodicidad</div>
+            <div className="px-6 py-3 font-semibold text-center">% a Pagar</div>
           </div>
           <div className="p-6 border-b border-border">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="font-medium text-foreground mb-1">Suscripción</p>
+                <p className="font-medium text-foreground mb-1">Fee Inicial (Set Up Fee)</p>
                 <p className="text-sm text-muted-foreground">
-                  El pago se realiza mensualmente por adelantado, el primer día hábil de cada mes.
-                </p>
-                <p className="text-sm text-muted-foreground mt-1">
-                  El pago mensual inicial se requiere al momento de la firma del contrato.
+                  Pago inicial de USD $50,000.00 más 12 cuotas de USD $17,500.00 por doce meses.
                 </p>
               </div>
               <div className="flex items-center justify-center">
                 <span className="px-4 py-2 rounded-full bg-sysde-red/10 text-sysde-red font-medium text-sm">
-                  Mensual
+                  100%
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="p-6">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <p className="font-medium text-foreground mb-1">Renta Mensual SAF+</p>
+                <p className="text-sm text-muted-foreground">
+                  Se facturará el primer día hábil de cada mes a partir de la firma del contrato.
+                </p>
+              </div>
+              <div className="flex items-center justify-center">
+                <span className="px-4 py-2 rounded-full bg-sysde-red/10 text-sysde-red font-medium text-sm">
+                  100%
                 </span>
               </div>
             </div>
@@ -157,8 +197,11 @@ const EconomicProposal = () => (
       >
         <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
           <AlertCircle className="h-4 w-4 text-sysde-red" />
-          No incluido en la propuesta
+          Interfaces (no incluidas)
         </h4>
+        <p className="text-sm text-muted-foreground mb-3">
+          Las interfaces no están incluidas dentro de esta oferta de servicio inicial. Sin embargo, con nuestro core de APIs se simplifica la integración con otros sistemas.
+        </p>
         <div className="grid sm:grid-cols-2 gap-2">
           {[
             "Desarrollo de interfaces personalizadas",
