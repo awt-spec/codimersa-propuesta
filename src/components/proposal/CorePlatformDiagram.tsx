@@ -160,8 +160,8 @@ const CorePlatformDiagram = () => {
               cx={node.x}
               cy={node.y}
               r={nodeRadius}
-              fill="url(#nodeGrad)"
-              className="cursor-pointer hover:opacity-90 transition-opacity"
+              fill="hsl(355, 72%, 42%)"
+              className="cursor-pointer"
             />
             {/* Node label - split into lines */}
             {(() => {
