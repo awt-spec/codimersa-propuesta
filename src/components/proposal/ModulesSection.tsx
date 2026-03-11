@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
-import { Shield, CreditCard, Banknote, FileText, Users, Landmark, Lock, BookOpen, Building, Smartphone, PiggyBank } from "lucide-react";
+import { Shield, CreditCard, Banknote, Users, Landmark, Lock, BookOpen, Building, Smartphone, PiggyBank } from "lucide-react";
 import { useState } from "react";
 
-const orbits = [
+const categories = [
   {
-    radius: 120,
-    duration: 30,
-    category: "Administrativos",
-    color: "hsl(var(--sysde-red))",
-    colorClass: "text-sysde-red",
-    bgClass: "bg-sysde-red",
+    name: "Administrativos",
+    angle: 0,
+    orbitRadius: 200,
+    orbitDuration: 90,
+    moonOrbit: 55,
+    moonDuration: 12,
     modules: [
       { name: "Seguridad", icon: Lock },
       { name: "Reglas de Negocio", icon: BookOpen },
@@ -20,12 +20,12 @@ const orbits = [
     ],
   },
   {
-    radius: 220,
-    duration: 45,
-    category: "Colocación",
-    color: "hsl(var(--sysde-blue))",
-    colorClass: "text-sysde-blue",
-    bgClass: "bg-sysde-blue",
+    name: "Colocación",
+    angle: 90,
+    orbitRadius: 200,
+    orbitDuration: 90,
+    moonOrbit: 55,
+    moonDuration: 14,
     modules: [
       { name: "Préstamos", icon: Landmark },
       { name: "Créditos", icon: CreditCard },
@@ -33,24 +33,24 @@ const orbits = [
     ],
   },
   {
-    radius: 310,
-    duration: 60,
-    category: "Tesorería",
-    color: "hsl(var(--sysde-blue))",
-    colorClass: "text-sysde-blue",
-    bgClass: "bg-sysde-blue",
+    name: "Tesorería",
+    angle: 180,
+    orbitRadius: 200,
+    orbitDuration: 90,
+    moonOrbit: 50,
+    moonDuration: 10,
     modules: [
       { name: "Bancos", icon: Banknote },
       { name: "Cajas", icon: Banknote },
     ],
   },
   {
-    radius: 390,
-    duration: 75,
-    category: "Captación",
-    color: "hsl(var(--sysde-red))",
-    colorClass: "text-sysde-red",
-    bgClass: "bg-sysde-red",
+    name: "Captación",
+    angle: 270,
+    orbitRadius: 200,
+    orbitDuration: 90,
+    moonOrbit: 45,
+    moonDuration: 8,
     modules: [
       { name: "Certificados de Depósitos", icon: PiggyBank },
     ],
@@ -60,6 +60,9 @@ const orbits = [
 const ModulesSection = () => {
   const [hoveredModule, setHoveredModule] = useState<string | null>(null);
   const [isPaused, setIsPaused] = useState(false);
+
+  const containerSize = 700;
+  const center = containerSize / 2;
 
   return (
     <section className="py-20 md:py-28 bg-background overflow-hidden">
@@ -80,23 +83,22 @@ const ModulesSection = () => {
           </p>
         </motion.div>
 
-        {/* Solar System */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
           className="relative mx-auto mb-16"
-          style={{ width: "100%", maxWidth: 860, height: 860 }}
+          style={{ width: "100%", maxWidth: containerSize, height: containerSize }}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => { setIsPaused(false); setHoveredModule(null); }}
         >
-          {/* Background stars */}
-          <div className="absolute inset-0 rounded-full overflow-hidden">
-            {Array.from({ length: 60 }).map((_, i) => (
+          {/* Stars */}
+          <div className="absolute inset-0">
+            {Array.from({ length: 50 }).map((_, i) => (
               <div
                 key={i}
-                className="absolute w-px h-px bg-foreground/20 rounded-full"
+                className="absolute rounded-full bg-foreground/15"
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
@@ -107,140 +109,195 @@ const ModulesSection = () => {
             ))}
           </div>
 
-          {/* Center - SAF+ Sun */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+          {/* Main orbit ring */}
+          <div
+            className="absolute rounded-full border border-border/20"
+            style={{
+              width: 400,
+              height: 400,
+              left: center - 200,
+              top: center - 200,
+            }}
+          />
+
+          {/* Sun - SAF+ */}
+          <div className="absolute z-20" style={{ left: center - 50, top: center - 50 }}>
             <motion.div
-              animate={{ scale: [1, 1.05, 1] }}
+              animate={{ scale: [1, 1.06, 1] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               className="relative"
             >
-              <div className="w-28 h-28 rounded-full bg-gradient-sysde flex items-center justify-center shadow-[0_0_60px_rgba(220,38,38,0.3)]">
+              <div className="w-[100px] h-[100px] rounded-full bg-gradient-sysde flex items-center justify-center shadow-[0_0_50px_rgba(220,38,38,0.3)]">
                 <div className="text-center text-primary-foreground">
-                  <p className="text-xs font-bold tracking-wider opacity-80">SYSDE</p>
-                  <p className="text-xl font-black">SAF+</p>
+                  <p className="text-[10px] font-bold tracking-wider opacity-80">SYSDE</p>
+                  <p className="text-lg font-black">SAF+</p>
                 </div>
               </div>
-              {/* Glow ring */}
-              <div className="absolute inset-[-8px] rounded-full border-2 border-sysde-red/20 animate-pulse" />
-              <div className="absolute inset-[-16px] rounded-full border border-sysde-red/10" />
+              <div className="absolute inset-[-6px] rounded-full border-2 border-primary/20 animate-pulse" />
+              <div className="absolute inset-[-14px] rounded-full border border-primary/10" />
             </motion.div>
           </div>
 
-          {/* Orbit rings */}
-          {orbits.map((orbit) => (
-            <div
-              key={orbit.category}
-              className="absolute top-1/2 left-1/2 rounded-full border border-border/30"
-              style={{
-                width: orbit.radius * 2,
-                height: orbit.radius * 2,
-                marginLeft: -orbit.radius,
-                marginTop: -orbit.radius,
-              }}
-            />
-          ))}
+          {/* Planets (categories) with moons (modules) */}
+          {categories.map((cat) => {
+            const isHoveredPlanet = hoveredModule === cat.name;
 
-          {/* Orbit labels */}
-          {orbits.map((orbit) => (
-            <div
-              key={`label-${orbit.category}`}
-              className="absolute top-1/2 left-1/2 pointer-events-none z-10"
-              style={{
-                marginLeft: -orbit.radius,
-                marginTop: -orbit.radius - 18,
-              }}
-            >
-              <span className={`text-[10px] font-semibold uppercase tracking-widest ${orbit.colorClass} opacity-60`}>
-                {orbit.category}
-              </span>
-            </div>
-          ))}
-
-          {/* Planets (modules) */}
-          {orbits.map((orbit) =>
-            orbit.modules.map((mod, mi) => {
-              const angleOffset = (360 / orbit.modules.length) * mi;
-              const isHovered = hoveredModule === mod.name;
-
-              return (
-                <motion.div
-                  key={mod.name}
-                  className="absolute top-1/2 left-1/2 z-10"
-                  style={{
-                    width: 0,
-                    height: 0,
-                  }}
-                  animate={{
-                    rotate: isPaused ? angleOffset : [angleOffset, angleOffset + 360],
-                  }}
-                  transition={
-                    isPaused
-                      ? { duration: 0.5 }
-                      : {
-                          duration: orbit.duration,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }
-                  }
+            return (
+              <motion.div
+                key={cat.name}
+                className="absolute z-10"
+                style={{
+                  width: 0,
+                  height: 0,
+                  left: center,
+                  top: center,
+                }}
+                animate={{
+                  rotate: isPaused ? cat.angle : [cat.angle, cat.angle + 360],
+                }}
+                transition={
+                  isPaused
+                    ? { duration: 0.8, ease: "easeOut" }
+                    : { duration: cat.orbitDuration, repeat: Infinity, ease: "linear" }
+                }
+              >
+                {/* Planet positioned at orbit radius */}
+                <div
+                  className="absolute"
+                  style={{ left: cat.orbitRadius, top: -22 }}
                 >
-                  <div
-                    className="absolute"
-                    style={{
-                      left: orbit.radius,
-                      top: -20,
-                      width: 40,
-                      height: 40,
+                  {/* Counter-rotate to keep planet upright */}
+                  <motion.div
+                    animate={{
+                      rotate: isPaused ? -cat.angle : [-cat.angle, -(cat.angle + 360)],
                     }}
+                    transition={
+                      isPaused
+                        ? { duration: 0.8, ease: "easeOut" }
+                        : { duration: cat.orbitDuration, repeat: Infinity, ease: "linear" }
+                    }
                   >
-                    <motion.div
-                      animate={{
-                        rotate: isPaused ? -angleOffset : [-angleOffset, -(angleOffset + 360)],
-                      }}
-                      transition={
-                        isPaused
-                          ? { duration: 0.5 }
-                          : {
-                              duration: orbit.duration,
-                              repeat: Infinity,
-                              ease: "linear",
-                            }
-                      }
-                    >
+                    {/* Planet + Moon system container */}
+                    <div className="relative" style={{ width: 44, height: 44 }}>
+                      {/* Moon orbit ring */}
                       <div
-                        className="relative group cursor-pointer"
-                        onMouseEnter={() => setHoveredModule(mod.name)}
+                        className="absolute rounded-full border border-secondary/15"
+                        style={{
+                          width: cat.moonOrbit * 2,
+                          height: cat.moonOrbit * 2,
+                          left: 22 - cat.moonOrbit,
+                          top: 22 - cat.moonOrbit,
+                        }}
+                      />
+
+                      {/* Planet (red) */}
+                      <div
+                        className="relative cursor-pointer z-10"
+                        onMouseEnter={() => setHoveredModule(cat.name)}
                         onMouseLeave={() => setHoveredModule(null)}
                       >
                         <motion.div
-                          animate={isHovered ? { scale: 1.3 } : { scale: 1 }}
-                          className={`w-10 h-10 rounded-full ${orbit.bgClass} flex items-center justify-center shadow-lg`}
+                          animate={isHoveredPlanet ? { scale: 1.2 } : { scale: 1 }}
+                          className="w-11 h-11 rounded-full bg-gradient-sysde flex items-center justify-center shadow-lg"
                           style={{
-                            boxShadow: isHovered
-                              ? `0 0 20px ${orbit.color.replace(")", " / 0.5)")}`
-                              : `0 0 8px ${orbit.color.replace(")", " / 0.2)")}`,
+                            boxShadow: isHoveredPlanet
+                              ? "0 0 24px hsl(var(--sysde-red) / 0.5)"
+                              : "0 0 10px hsl(var(--sysde-red) / 0.25)",
                           }}
                         >
-                          <mod.icon className="w-4 h-4 text-white" />
+                          <span className="text-[8px] font-bold text-primary-foreground text-center leading-tight px-1">
+                            {cat.name.length > 8 ? cat.name.slice(0, 5) + "." : cat.name}
+                          </span>
                         </motion.div>
 
-                        {/* Tooltip */}
-                        {isHovered && (
+                        {isHoveredPlanet && (
                           <motion.div
-                            initial={{ opacity: 0, y: 5 }}
+                            initial={{ opacity: 0, y: 4 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1.5 bg-card border border-border rounded-lg shadow-xl whitespace-nowrap z-30"
+                            className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1.5 bg-card border border-border rounded-lg shadow-xl whitespace-nowrap z-50"
                           >
-                            <p className={`text-xs font-semibold ${orbit.colorClass}`}>{mod.name}</p>
-                            <p className="text-[10px] text-muted-foreground">{orbit.category}</p>
+                            <p className="text-xs font-semibold text-sysde-red">{cat.name}</p>
+                            <p className="text-[10px] text-muted-foreground">{cat.modules.length} módulos</p>
                           </motion.div>
                         )}
                       </div>
-                    </motion.div>
-                  </div>
-                </motion.div>
-              );
-            })
-          )}
+
+                      {/* Moons (modules - blue) */}
+                      {cat.modules.map((mod, mi) => {
+                        const moonAngle = (360 / cat.modules.length) * mi;
+                        const isHoveredMoon = hoveredModule === mod.name;
+
+                        return (
+                          <motion.div
+                            key={mod.name}
+                            className="absolute z-10"
+                            style={{
+                              width: 0,
+                              height: 0,
+                              left: 22,
+                              top: 22,
+                            }}
+                            animate={{
+                              rotate: isPaused ? moonAngle : [moonAngle, moonAngle + 360],
+                            }}
+                            transition={
+                              isPaused
+                                ? { duration: 0.6, ease: "easeOut" }
+                                : { duration: cat.moonDuration, repeat: Infinity, ease: "linear" }
+                            }
+                          >
+                            <div
+                              className="absolute"
+                              style={{ left: cat.moonOrbit, top: -12 }}
+                            >
+                              <motion.div
+                                animate={{
+                                  rotate: isPaused ? -moonAngle : [-moonAngle, -(moonAngle + 360)],
+                                }}
+                                transition={
+                                  isPaused
+                                    ? { duration: 0.6, ease: "easeOut" }
+                                    : { duration: cat.moonDuration, repeat: Infinity, ease: "linear" }
+                                }
+                              >
+                                <div
+                                  className="cursor-pointer"
+                                  onMouseEnter={() => setHoveredModule(mod.name)}
+                                  onMouseLeave={() => setHoveredModule(null)}
+                                >
+                                  <motion.div
+                                    animate={isHoveredMoon ? { scale: 1.4 } : { scale: 1 }}
+                                    className="w-6 h-6 rounded-full bg-sysde-blue flex items-center justify-center shadow-md"
+                                    style={{
+                                      boxShadow: isHoveredMoon
+                                        ? "0 0 16px hsl(var(--sysde-blue) / 0.6)"
+                                        : "0 0 6px hsl(var(--sysde-blue) / 0.25)",
+                                    }}
+                                  >
+                                    <mod.icon className="w-3 h-3 text-secondary-foreground" />
+                                  </motion.div>
+
+                                  {isHoveredMoon && (
+                                    <motion.div
+                                      initial={{ opacity: 0, y: 4 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      className="absolute top-full left-1/2 -translate-x-1/2 mt-1 px-2.5 py-1 bg-card border border-border rounded-lg shadow-xl whitespace-nowrap z-50"
+                                    >
+                                      <p className="text-[10px] font-semibold text-sysde-blue">{mod.name}</p>
+                                    </motion.div>
+                                  )}
+                                </div>
+                              </motion.div>
+                            </div>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         {/* Legend Cards */}
@@ -251,16 +308,16 @@ const ModulesSection = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"
         >
-          {orbits.map((orbit) => (
-            <div key={orbit.category} className="p-5 rounded-2xl border border-border bg-card">
+          {categories.map((cat) => (
+            <div key={cat.name} className="p-5 rounded-2xl border border-border bg-card">
               <div className="flex items-center gap-2 mb-3">
-                <div className={`w-3 h-3 rounded-full ${orbit.bgClass}`} />
-                <h4 className={`font-semibold text-sm ${orbit.colorClass}`}>{orbit.category}</h4>
+                <div className="w-3 h-3 rounded-full bg-gradient-sysde" />
+                <h4 className="font-semibold text-sm text-sysde-red">{cat.name}</h4>
               </div>
               <ul className="space-y-1.5">
-                {orbit.modules.map((mod) => (
+                {cat.modules.map((mod) => (
                   <li key={mod.name} className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <mod.icon className="w-3 h-3 flex-shrink-0" />
+                    <div className="w-2 h-2 rounded-full bg-sysde-blue flex-shrink-0" />
                     {mod.name}
                   </li>
                 ))}
@@ -269,18 +326,17 @@ const ModulesSection = () => {
           ))}
         </motion.div>
 
-        {/* Detail sections below */}
+        {/* Detail sections */}
         <div className="mt-20 space-y-12">
-          {/* Préstamos detail */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5 }}
           >
-            <div className="p-8 rounded-2xl border-2 border-sysde-blue/20 bg-card">
+            <div className="p-8 rounded-2xl border-2 border-secondary/20 bg-card">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-sysde-blue/10 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center">
                   <Landmark className="h-5 w-5 text-sysde-blue" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground">Módulo Préstamos</h3>
@@ -319,7 +375,6 @@ const ModulesSection = () => {
             </div>
           </motion.div>
 
-          {/* Clientes y Seguridad */}
           <div className="grid md:grid-cols-2 gap-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
