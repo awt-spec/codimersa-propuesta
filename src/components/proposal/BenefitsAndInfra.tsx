@@ -161,7 +161,7 @@ const BenefitsAndInfra = () => (
                   <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-primary-foreground/30 rounded-br-xl" />
 
                   {/* Hover glow */}
-                  <div className="absolute inset-0 rounded-xl bg-sysde-blue/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 rounded-xl bg-primary-foreground/5 opacity-0 group-hover:opacity-100 transition-opacity" />
 
                   <div className="relative">
                     <div className="flex items-center gap-3 mb-3">
