@@ -147,11 +147,12 @@ const BenefitsAndInfra = () => (
                         <h4 className="font-bold text-sm text-primary-foreground">{node.title}</h4>
                         <div className="flex items-center gap-1 mt-0.5">
                           <motion.div
-                            className="w-1.5 h-1.5 rounded-full bg-green-400"
+                            className="w-1.5 h-1.5 rounded-full"
+                            style={{ backgroundColor: "hsl(142, 71%, 45%)" }}
                             animate={{ opacity: [1, 0.4, 1] }}
                             transition={{ duration: 2, repeat: Infinity }}
                           />
-                          <span className="text-[10px] text-green-400/80 font-mono">ONLINE</span>
+                          <span className="text-[10px] font-mono" style={{ color: "hsl(142, 71%, 45%, 0.8)" }}>ONLINE</span>
                         </div>
                       </div>
                     </div>
