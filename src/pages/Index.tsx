@@ -4,6 +4,7 @@ import ExecutiveLetter from "@/components/proposal/ExecutiveLetter";
 import SolutionOverview from "@/components/proposal/SolutionOverview";
 import ModulesSection from "@/components/proposal/ModulesSection";
 import BenefitsAndInfra from "@/components/proposal/BenefitsAndInfra";
+import SubscriptionModel from "@/components/proposal/SubscriptionModel";
 import EconomicProposal from "@/components/proposal/EconomicProposal";
 import VisionAndTimeline from "@/components/proposal/VisionAndTimeline";
 import ProposalFooter from "@/components/proposal/ProposalFooter";
@@ -28,6 +29,9 @@ const Index = () => {
       </div>
       <div id="vision">
         <VisionAndTimeline />
+      </div>
+      <div id="suscripcion">
+        <SubscriptionModel />
       </div>
       <div id="propuesta">
         <EconomicProposal />

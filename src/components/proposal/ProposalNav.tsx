@@ -7,13 +7,18 @@ const sections = [
   { label: "Solución", href: "#solucion" },
   { label: "Módulos", href: "#modulos" },
   { label: "Beneficios", href: "#beneficios" },
-  { label: "Propuesta", href: "#propuesta" },
   { label: "Visión", href: "#vision" },
+  { label: "Suscripción", href: "#suscripcion" },
+  { label: "Propuesta", href: "#propuesta" },
 ];
+
+// Sections with dark/red backgrounds where sidebar text should be white
+const darkSections = ["#beneficios", "#vision"];
 
 const ProposalNav = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState(sections[0].href);
+  const [isOverDark, setIsOverDark] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -29,7 +34,9 @@ const ProposalNav = () => {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (visible[0]) {
-          setActiveSection(`#${visible[0].target.id}`);
+          const id = `#${visible[0].target.id}`;
+          setActiveSection(id);
+          setIsOverDark(darkSections.includes(id));
         }
       },
       {
@@ -89,7 +96,7 @@ const ProposalNav = () => {
         </div>
       </motion.nav>
 
-      <aside className="hidden xl:flex fixed right-6 top-1/2 -translate-y-1/2 z-40">
+      <aside className="hidden xl:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 transition-colors duration-300">
         <nav aria-label="Tabla de contenido" className="flex flex-col gap-2">
           {sections.map((section) => {
             const isActive = activeSection === section.href;
@@ -98,8 +105,10 @@ const ProposalNav = () => {
               <button
                 key={section.href}
                 onClick={() => scrollTo(section.href)}
-                className={`group flex items-center justify-end gap-2 transition-all ${
-                  isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                className={`group flex items-center justify-end gap-2 transition-all duration-300 ${
+                  isOverDark
+                    ? isActive ? "text-primary-foreground" : "text-primary-foreground/60 hover:text-primary-foreground"
+                    : isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 <span
@@ -110,8 +119,10 @@ const ProposalNav = () => {
                   {section.label}
                 </span>
                 <span
-                  className={`h-px transition-all ${
-                    isActive ? "w-8 bg-foreground" : "w-5 bg-border group-hover:bg-foreground"
+                  className={`h-px transition-all duration-300 ${
+                    isOverDark
+                      ? isActive ? "w-8 bg-primary-foreground" : "w-5 bg-primary-foreground/30 group-hover:bg-primary-foreground"
+                      : isActive ? "w-8 bg-foreground" : "w-5 bg-border group-hover:bg-foreground"
                   }`}
                 />
               </button>

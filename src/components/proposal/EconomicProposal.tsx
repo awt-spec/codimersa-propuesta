@@ -29,69 +29,23 @@ const EconomicProposal = () => (
         className="mb-12"
       >
         <div className="overflow-hidden rounded-2xl border border-border bg-card">
-          <div className="grid grid-cols-3 bg-sysde-red text-white">
-            <div className="px-6 py-4 font-semibold text-center border-r border-sysde-red/30">
+          <div className="grid grid-cols-2 bg-sysde-red text-white">
+            <div className="px-6 py-4 font-semibold border-r border-sysde-red/30">
               Concepto
-            </div>
-            <div className="px-6 py-4 font-semibold text-center border-r border-sysde-red/30">
-              Detalle
             </div>
             <div className="px-6 py-4 font-semibold text-center">
               Monto USD
             </div>
           </div>
-          <div className="grid grid-cols-3 border-b border-border bg-card">
+          <div className="grid grid-cols-2 border-b border-border bg-card">
             <div className="px-6 py-5 text-foreground font-medium border-r border-border">
-              Renta Mensual
-            </div>
-            <div className="px-6 py-5 text-muted-foreground text-sm border-r border-border">
-              (10) Usuarios SYSDE SAF+
+              Suscripción Mensual Ilimitada SYSDE SAF+
             </div>
             <div className="px-6 py-5 text-center text-foreground font-bold text-xl">
               $10,000.00
             </div>
           </div>
         </div>
-      </motion.div>
-
-      {/* Setup Fee */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        className="mb-12"
-      >
-        <div className="overflow-hidden rounded-2xl border border-border bg-card">
-          <div className="grid grid-cols-2 bg-sysde-blue text-white">
-            <div className="px-6 py-4 font-semibold border-r border-sysde-blue/30">
-              Set Up Fee
-            </div>
-            <div className="px-6 py-4 font-semibold text-center">
-              Precio USD
-            </div>
-          </div>
-          {[
-            { concept: "Pago inicial — Una única vez a la firma del contrato", amount: "$50,000.00" },
-            { concept: "Tractos del mes 1 al mes 12: USD $17,500.00 mensuales por concepto de Set Up Fee", amount: "$17,500.00 / mes" },
-            { concept: "Total Set Up Fee: Pago inicial + 12 cuotas", amount: "$260,000.00", highlight: true },
-          ].map((row, index) => (
-            <div
-              key={index}
-              className={`grid grid-cols-2 border-b border-border ${row.highlight ? "bg-sysde-red/5" : index % 2 === 0 ? "bg-card" : "bg-muted/30"}`}
-            >
-              <div className={`px-6 py-4 text-sm border-r border-border ${row.highlight ? "text-foreground font-semibold" : "text-muted-foreground"}`}>
-                {row.concept}
-              </div>
-              <div className={`px-6 py-4 text-center ${row.highlight ? "text-sysde-red font-bold text-lg" : "text-foreground font-medium"}`}>
-                {row.amount}
-              </div>
-            </div>
-          ))}
-        </div>
-        <p className="text-xs text-muted-foreground mt-3 italic">
-          * Cada usuario adicional de SYSDE SAF+ tiene un costo mensual de USD $55.00
-        </p>
       </motion.div>
 
       {/* Included Services */}
