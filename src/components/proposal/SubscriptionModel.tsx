@@ -115,13 +115,47 @@ const SubscriptionModel = () => {
             </motion.div>
 
             {/* Counter */}
-            <div className="mt-8 pt-6 border-t border-border flex items-center justify-between">
-              <p className="text-sm text-muted-foreground">
-                <span className="font-bold text-primary text-lg">{filtered.length}</span>{" "}
-                {activeFilter === "all" ? "servicios incluidos" : `servicios de ${activeFilter}`}
-              </p>
-              <p className="text-xs text-muted-foreground">Sin costos adicionales</p>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 15, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-8 pt-6 border-t border-border"
+            >
+              <motion.div
+                initial={{ x: -30, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.5, type: "spring", stiffness: 100 }}
+                className="flex items-center justify-between"
+              >
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-bold text-primary text-lg">{filtered.length}</span>{" "}
+                  {activeFilter === "all" ? "servicios incluidos" : `servicios de ${activeFilter}`}
+                </p>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.7, type: "spring", stiffness: 120 }}
+                  className="relative"
+                >
+                  <motion.span
+                    animate={{ 
+                      boxShadow: [
+                        "0 0 0 0 hsla(var(--primary), 0)",
+                        "0 0 0 8px hsla(var(--primary), 0.15)",
+                        "0 0 0 0 hsla(var(--primary), 0)"
+                      ]
+                    }}
+                    transition={{ duration: 2.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold border border-primary/20"
+                  >
+                    ✨ Sin costos adicionales
+                  </motion.span>
+                </motion.div>
+              </motion.div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
