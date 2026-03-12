@@ -1,2 +1,4 @@
-[[functions.proposal-chat]]
+project_id = "mxywkprlmbnhrrebbpgi"
+
+[functions.proposal-chat]
 verify_jwt = false
