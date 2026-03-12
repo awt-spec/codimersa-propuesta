@@ -18,6 +18,7 @@ const darkSections = ["#beneficios", "#vision"];
 const ProposalNav = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState(sections[0].href);
+  const [isOverDark, setIsOverDark] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
