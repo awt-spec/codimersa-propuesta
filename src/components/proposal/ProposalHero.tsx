@@ -25,14 +25,6 @@ const ProposalHero = () => (
         transition={{ duration: 0.5 }}
         className="max-w-4xl mx-auto"
       >
-        <motion.img
-          src={sysdeLogoSrc}
-          alt="SYSDE Logo"
-          className="h-10 md:h-12 mb-12 brightness-0 invert"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-        />
 
         <div className="overflow-hidden">
           <motion.h1
