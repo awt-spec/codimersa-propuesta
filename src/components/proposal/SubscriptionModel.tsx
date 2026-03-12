@@ -148,7 +148,7 @@ const SubscriptionModel = () => {
                         "0 0 0 0 hsla(var(--primary), 0)"
                       ]
                     }}
-                    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{ duration: 2.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold border border-primary/20"
                   >
                     ✨ Sin costos adicionales
