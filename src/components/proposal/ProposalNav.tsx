@@ -41,7 +41,21 @@ const ProposalNav = () => {
       }
 
       setActiveSection(current);
-      setIsOverDark(darkSections.includes(current));
+
+      // Check what section is behind the sidebar (at viewport center)
+      const sidebarY = window.innerHeight / 2;
+      let sidebarOverDark = false;
+      for (const darkId of darkSections) {
+        const el = document.querySelector(darkId);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= sidebarY && rect.bottom >= sidebarY) {
+            sidebarOverDark = true;
+            break;
+          }
+        }
+      }
+      setIsOverDark(sidebarOverDark);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
