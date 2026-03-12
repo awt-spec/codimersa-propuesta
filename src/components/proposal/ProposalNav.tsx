@@ -9,11 +9,12 @@ const sections = [
   { label: "Beneficios", href: "#beneficios" },
   { label: "Visión", href: "#vision" },
   { label: "Suscripción", href: "#suscripcion" },
-  { label: "Propuesta", href: "#propuesta" },
+  { label: "Inversión", href: "#propuesta" },
+  { label: "Contacto", href: "#contacto" },
 ];
 
 // Sections with dark/red backgrounds where sidebar text should be white
-const darkSections = ["#beneficios", "#vision"];
+const darkSections = ["#beneficios", "#vision", "#contacto"];
 
 const ProposalNav = () => {
   const [scrolled, setScrolled] = useState(false);

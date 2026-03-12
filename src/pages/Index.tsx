@@ -36,7 +36,9 @@ const Index = () => {
       <div id="propuesta">
         <EconomicProposal />
       </div>
-      <ProposalFooter />
+      <div id="contacto">
+        <ProposalFooter />
+      </div>
       <ProposalChatbot />
     </div>
   );
