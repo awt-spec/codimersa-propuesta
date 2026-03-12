@@ -48,42 +48,34 @@ const EconomicProposal = () => (
         </div>
       </motion.div>
 
-      {/* Included Services */}
+      {/* Setup Fee Eliminated */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.6, delay: 0.1 }}
+        transition={{ duration: 0.6, delay: 0.1, type: "spring", stiffness: 100 }}
         className="mb-12"
       >
-        <div className="p-8 rounded-2xl border-2 border-sysde-blue/20 bg-card relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-sysde-blue" />
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl bg-sysde-blue/10 flex items-center justify-center flex-shrink-0">
-              <Infinity className="h-6 w-6 text-sysde-blue" />
-            </div>
-            <div>
-              <h4 className="font-bold text-foreground text-xl mb-2">Servicios Incluidos en la Suscripción</h4>
-              <p className="text-muted-foreground mb-4">
-                La suscripción mensual ilimitada incluye acceso completo al aplicativo SYSDE SAF+ mientras el servicio esté activo/vigente:
+        <div className="p-6 rounded-2xl border-2 border-green-500/20 bg-green-50/50 dark:bg-green-950/10 relative overflow-hidden">
+          <div className="flex items-center gap-4">
+            <motion.div
+              animate={{ rotate: [0, -10, 10, 0] }}
+              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", repeatDelay: 3 }}
+              className="w-14 h-14 rounded-2xl bg-green-500/10 flex items-center justify-center flex-shrink-0"
+            >
+              <BadgeCheck className="h-7 w-7 text-green-600" />
+            </motion.div>
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-1">
+                <h4 className="font-bold text-foreground text-xl">SIN SETUP FEE</h4>
+                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-red-100 dark:bg-red-950/30 text-red-600 text-xs font-semibold line-through">
+                  <XCircle className="h-3 w-3" />
+                  Costo de configuración
+                </span>
+              </div>
+              <p className="text-muted-foreground text-sm">
+                Eliminamos el costo de configuración inicial. CODIMERSA inicia sin inversión previa — solo la suscripción mensual.
               </p>
-              <ul className="grid sm:grid-cols-2 gap-3">
-                {[
-                  "Créditos ilimitados",
-                  "Capacitación ilimitada",
-                  "Soporte correctivo ilimitado",
-                  "Desarrollo de Interfaces",
-                  "Parametrización del aplicativo",
-                  "Pruebas Integrales (Certificación)",
-                  "Puesta en Producción",
-                  "Acompañamiento a la operación",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="h-4 w-4 text-sysde-blue mt-0.5 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </div>
