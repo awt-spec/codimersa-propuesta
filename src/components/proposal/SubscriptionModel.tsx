@@ -3,14 +3,19 @@ import { Users, Building2, Code2, GraduationCap, MessageCircle, Wrench, Shield, 
 
 const cards = [
   {
-    icon: Users,
-    title: "Créditos ilimitados",
-    desc: "Acceso sin restricciones a todos los módulos y funcionalidades de la plataforma.",
+    icon: Building2,
+    title: "Empresas ilimitadas",
+    desc: "Sin límite de empresas ni sucursales. Crezca a nuevos mercados sin barreras de licencia.",
   },
   {
-    icon: Building2,
-    title: "Sin límite de empresas ni sucursales",
-    desc: "Crezca a nuevos mercados sin barreras de licencia.",
+    icon: Users,
+    title: "Usuarios ilimitados",
+    desc: "Agregue todos los usuarios que necesite sin costos adicionales por licencia o por usuario.",
+  },
+  {
+    icon: Shield,
+    title: "Licenciamiento incluido",
+    desc: "Licencia completa de la plataforma SYSDE SAF+ incluida en la suscripción mensual, sin pagos extras.",
   },
   {
     icon: Code2,
@@ -31,6 +36,11 @@ const cards = [
     icon: Wrench,
     title: "Soporte correctivo ilimitado",
     desc: "Incluido en la suscripción mensual sin costo adicional y sin límite de horas.",
+  },
+  {
+    icon: Infinity,
+    title: "Evolución y actualizaciones",
+    desc: "Actualizaciones continuas de la plataforma con nuevas funcionalidades, mejoras y evolución tecnológica sin costo adicional.",
   },
 ];
 
