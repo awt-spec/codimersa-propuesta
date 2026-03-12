@@ -73,11 +73,10 @@ const documentContent = `
 - Etapa 6: Puesta en Producción (M7-M8)
 - Etapa 7: Acompañamiento (M8)
 
-## No incluido:
-- Interfaces personalizadas (se simplifican con Core APIs)
-- Desarrollo de requerimientos adicionales
-- Migraciones de datos
-- Integraciones con terceros
+## Incluido en la propuesta:
+- Desarrollo de requerimientos adicionales: INCLUIDO sin costo extra
+- Migraciones de datos: INCLUIDAS sin costo extra
+- Integraciones con terceros: INCLUIDAS a través del Core de APIs SYSDE, que expone servicios nativos para integración total con sistemas externos
 
 ## Infraestructura ON-CLOUD:
 - Servidor de Aplicaciones: 4 cores, 16 GB RAM, 128 GB SSD, Windows Server 2019
