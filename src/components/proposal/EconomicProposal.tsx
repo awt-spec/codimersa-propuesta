@@ -16,7 +16,7 @@ const EconomicProposal = () => (
           ON-CLOUD: Inversión Económica
         </h3>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          La inversión económica requerida para la renta e implementación del sistema SYSDE SAF+, de acuerdo al alcance y plazos planteados en la presente propuesta para CODIMERSA.
+          La inversión económica requerida para la suscripción mensual del sistema SYSDE SAF+, de acuerdo al alcance planteado en la presente propuesta para CODIMERSA.
         </p>
       </motion.div>
 

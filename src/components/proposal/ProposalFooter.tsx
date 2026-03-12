@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 import sysdeLogoSrc from "@/assets/sysde-logo.png";
 
 const ProposalFooter = () => (

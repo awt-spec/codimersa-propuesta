@@ -4,8 +4,8 @@ import { Users, Building2, Code2, GraduationCap, MessageCircle, Wrench, Shield, 
 const cards = [
   {
     icon: Users,
-    title: "Sin límite de usuarios",
-    desc: "Escale su equipo sin restricciones ni costos adicionales.",
+    title: "Créditos ilimitados",
+    desc: "Acceso sin restricciones a todos los módulos y funcionalidades de la plataforma.",
   },
   {
     icon: Building2,
@@ -19,7 +19,7 @@ const cards = [
   },
   {
     icon: GraduationCap,
-    title: "Capacitación progresiva ilimitada",
+    title: "Capacitación ilimitada",
     desc: "Formación continua incluida: primero funcionalidades básicas, luego avanzadas. Sin límite de horas.",
   },
   {
