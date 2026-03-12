@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import sysdeLogoSrc from "@/assets/sysde-logo.png";
+
 
 const ProposalHero = () => (
   <section className="relative min-h-[85vh] flex items-center justify-center bg-gradient-sysde text-primary-foreground overflow-hidden">
