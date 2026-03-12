@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 import sysdeLogoSrc from "@/assets/sysde-logo.png";
 
 const ProposalFooter = () => (
@@ -18,12 +18,12 @@ const ProposalFooter = () => (
             <p className="text-xs opacity-60">Propuesta comercial para CODIMERSA — 11 de Marzo de 2026</p>
           </div>
         </div>
-        <div className="flex items-center gap-6 text-sm">
-          <a href="tel:+50686570390" className="flex items-center gap-2 hover:text-primary-foreground transition-colors">
-            <Phone className="h-4 w-4" /> +506 8657 0390
+        <div className="flex flex-col sm:flex-row items-center gap-4 text-sm">
+          <a href="mailto:ewheelock@sysde.com" className="flex items-center gap-2 hover:text-primary-foreground transition-colors">
+            <Mail className="h-4 w-4" /> ewheelock@sysde.com
           </a>
-          <a href="mailto:info@sysde.com" className="flex items-center gap-2 hover:text-primary-foreground transition-colors">
-            <Mail className="h-4 w-4" /> info@sysde.com
+          <a href="mailto:alwheelock@sysde.com" className="flex items-center gap-2 hover:text-primary-foreground transition-colors">
+            <Mail className="h-4 w-4" /> alwheelock@sysde.com
           </a>
         </div>
       </motion.div>

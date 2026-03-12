@@ -16,7 +16,7 @@ const EconomicProposal = () => (
           ON-CLOUD: Inversión Económica
         </h3>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          La inversión económica requerida para la renta e implementación del sistema SYSDE SAF+, de acuerdo al alcance y plazos planteados en la presente propuesta para CODIMERSA.
+          La inversión económica requerida para la suscripción mensual del sistema SYSDE SAF+, de acuerdo al alcance planteado en la presente propuesta para CODIMERSA.
         </p>
       </motion.div>
 
@@ -63,22 +63,20 @@ const EconomicProposal = () => (
               <Infinity className="h-6 w-6 text-sysde-blue" />
             </div>
             <div>
-              <h4 className="font-bold text-foreground text-xl mb-2">Servicios Incluidos en la Renta</h4>
+              <h4 className="font-bold text-foreground text-xl mb-2">Servicios Incluidos en la Suscripción</h4>
               <p className="text-muted-foreground mb-4">
-                La renta incluye una (1) licencia de uso para 10 usuarios del aplicativo SYSDE SAF+, mientras el servicio mensual esté activo/vigente:
+                La suscripción mensual ilimitada incluye acceso completo al aplicativo SYSDE SAF+ mientras el servicio esté activo/vigente:
               </p>
               <ul className="grid sm:grid-cols-2 gap-3">
                 {[
-                  "Gestión del Proyecto",
-                  "Planificación y Análisis",
-                  "Preparación para la Implementación",
+                  "Créditos ilimitados",
+                  "Capacitación ilimitada",
+                  "Soporte correctivo ilimitado",
                   "Desarrollo de Interfaces",
                   "Parametrización del aplicativo",
-                  "Capacitación progresiva",
                   "Pruebas Integrales (Certificación)",
                   "Puesta en Producción",
                   "Acompañamiento a la operación",
-                  "Soporte técnico incluido",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
                     <CheckCircle2 className="h-4 w-4 text-sysde-blue mt-0.5 flex-shrink-0" />
@@ -108,25 +106,10 @@ const EconomicProposal = () => (
             <div className="px-6 py-3 font-semibold border-r border-sysde-red/30">Hito</div>
             <div className="px-6 py-3 font-semibold text-center">% a Pagar</div>
           </div>
-          <div className="p-6 border-b border-border">
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <p className="font-medium text-foreground mb-1">Fee Inicial (Set Up Fee)</p>
-                <p className="text-sm text-muted-foreground">
-                  Pago inicial de USD $50,000.00 más 12 cuotas de USD $17,500.00 por doce meses.
-                </p>
-              </div>
-              <div className="flex items-center justify-center">
-                <span className="px-4 py-2 rounded-full bg-sysde-red/10 text-sysde-red font-medium text-sm">
-                  100%
-                </span>
-              </div>
-            </div>
-          </div>
           <div className="p-6">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="font-medium text-foreground mb-1">Renta Mensual SAF+</p>
+                <p className="font-medium text-foreground mb-1">Suscripción Mensual SAF+</p>
                 <p className="text-sm text-muted-foreground">
                   Se facturará el primer día hábil de cada mes a partir de la firma del contrato.
                 </p>
