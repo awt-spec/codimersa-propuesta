@@ -34,7 +34,9 @@ const ProposalNav = () => {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (visible[0]) {
-          setActiveSection(`#${visible[0].target.id}`);
+          const id = `#${visible[0].target.id}`;
+          setActiveSection(id);
+          setIsOverDark(darkSections.includes(id));
         }
       },
       {
