@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { CheckCircle2, AlertCircle, CreditCard, Infinity } from "lucide-react";
+import { AlertCircle, CreditCard, BadgeCheck, XCircle } from "lucide-react";
 
 const EconomicProposal = () => (
   <section className="py-20 md:py-28 bg-background">
