@@ -1,47 +1,19 @@
 import { motion } from "framer-motion";
-import { Users, Building2, Code2, GraduationCap, MessageCircle, Wrench, Shield, Infinity } from "lucide-react";
+import { CheckCircle2, Infinity } from "lucide-react";
 
-const cards = [
-  {
-    icon: Building2,
-    title: "Empresas ilimitadas",
-    desc: "Sin límite de empresas ni sucursales. Crezca a nuevos mercados sin barreras de licencia.",
-  },
-  {
-    icon: Users,
-    title: "Usuarios ilimitados",
-    desc: "Agregue todos los usuarios que necesite sin costos adicionales por licencia o por usuario.",
-  },
-  {
-    icon: Shield,
-    title: "Licenciamiento incluido",
-    desc: "Licencia completa de la plataforma SYSDE SAF+ incluida en la suscripción mensual, sin pagos extras.",
-  },
-  {
-    icon: Code2,
-    title: "Todos los desarrollos requeridos",
-    desc: "Cada desarrollo necesario para cumplir la expectativa de CODIMERSA, con un roadmap evolutivo específico.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Capacitación ilimitada",
-    desc: "Formación continua incluida: primero funcionalidades básicas, luego avanzadas. Sin límite de horas.",
-  },
-  {
-    icon: MessageCircle,
-    title: "Chat de soporte en tiempo real",
-    desc: "Canal directo para resolver cualquier consulta, facilitando el aprendizaje continuo y la autonomía.",
-  },
-  {
-    icon: Wrench,
-    title: "Soporte correctivo ilimitado",
-    desc: "Incluido en la suscripción mensual sin costo adicional y sin límite de horas.",
-  },
-  {
-    icon: Infinity,
-    title: "Evolución y actualizaciones",
-    desc: "Actualizaciones continuas de la plataforma con nuevas funcionalidades, mejoras y evolución tecnológica sin costo adicional.",
-  },
+const items = [
+  "Créditos ilimitados",
+  "Capacitación ilimitada",
+  "Soporte correctivo ilimitado",
+  "Evolución y actualizaciones",
+  "Parametrización del aplicativo",
+  "Pruebas Integrales (Certificación)",
+  "Puesta en Producción",
+  "Acompañamiento a la operación",
+  "Empresas ilimitadas",
+  "Usuarios ilimitados",
+  "Licenciamiento incluido",
+  "Desarrollos requeridos",
 ];
 
 const fade = {
@@ -54,59 +26,42 @@ const fade = {
 const SubscriptionModel = () => (
   <section className="py-20 md:py-28 bg-background">
     <div className="container px-6 max-w-5xl">
-      {/* Header */}
-      <motion.div {...fade} className="flex items-center gap-4 mb-6">
-        <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-          <Infinity className="h-7 w-7 text-primary" />
-        </div>
-        <div>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-            Modelo de Suscripción
-          </h2>
-          <p className="text-sm text-muted-foreground">Soporte Ilimitado de SYSDE</p>
-        </div>
-      </motion.div>
-
-      <motion.p {...fade} className="text-muted-foreground mb-12 max-w-4xl">
-        Ofrecemos a CODIMERSA un modelo de suscripción que garantiza el acceso completo a nuestra plataforma SYSDE SAF+. Esta suscripción mensual contempla un servicio integral en la nube que incluye:
-      </motion.p>
-
-      {/* Cards Grid */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
-        {cards.map((card, i) => (
-          <motion.div
-            key={card.title}
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="group p-6 rounded-2xl border border-border bg-card hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-          >
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-              <card.icon className="h-5 w-5 text-primary" />
-            </div>
-            <h4 className="font-bold text-foreground mb-2">{card.title}</h4>
-            <p className="text-sm text-muted-foreground leading-relaxed">{card.desc}</p>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Data Ownership Banner */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="rounded-2xl bg-gradient-sysde p-6 flex items-start gap-4"
+        {...fade}
+        className="rounded-2xl border border-border bg-card overflow-hidden"
       >
-        <div className="w-10 h-10 rounded-xl bg-primary-foreground/15 flex items-center justify-center flex-shrink-0">
-          <Shield className="h-5 w-5 text-primary-foreground" />
-        </div>
-        <div>
-          <h4 className="font-bold text-primary-foreground mb-1">Propiedad de los datos</h4>
-          <p className="text-sm text-primary-foreground/80">
-            Todos los datos generados y almacenados en la plataforma son propiedad exclusiva de CODIMERSA. SYSDE actúa únicamente como proveedor tecnológico.
+        {/* Top accent bar */}
+        <div className="h-1.5 bg-primary w-full" />
+
+        <div className="p-8 md:p-10">
+          {/* Header */}
+          <div className="flex items-center gap-3 mb-4">
+            <Infinity className="h-7 w-7 text-primary flex-shrink-0" />
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+              Servicios Incluidos en la Suscripción
+            </h2>
+          </div>
+
+          <p className="text-muted-foreground mb-8 max-w-3xl">
+            La suscripción mensual ilimitada incluye acceso completo al aplicativo SYSDE SAF+ mientras el servicio esté activo/vigente:
           </p>
+
+          {/* Checklist grid */}
+          <div className="grid sm:grid-cols-2 gap-x-10 gap-y-4">
+            {items.map((item, i) => (
+              <motion.div
+                key={item}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: i * 0.05 }}
+                className="flex items-center gap-3"
+              >
+                <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                <span className="text-foreground">{item}</span>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </motion.div>
     </div>
