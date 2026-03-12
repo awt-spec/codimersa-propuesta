@@ -22,37 +22,31 @@ const ProposalNav = () => {
   const [isOverDark, setIsOverDark] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 20);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      // Determine active section based on scroll position
+      const scrollY = window.scrollY + window.innerHeight * 0.35;
+      let current = sections[0].href;
 
-        if (visible[0]) {
-          const id = `#${visible[0].target.id}`;
-          setActiveSection(id);
-          setIsOverDark(darkSections.includes(id));
+      for (const section of sections) {
+        const el = document.querySelector(section.href);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const top = rect.top + window.scrollY;
+          if (scrollY >= top) {
+            current = section.href;
+          }
         }
-      },
-      {
-        root: null,
-        rootMargin: "-30% 0px -50% 0px",
-        threshold: [0.2, 0.4, 0.6, 0.8],
-      },
-    );
+      }
 
-    sections.forEach(({ href }) => {
-      const element = document.querySelector(href);
-      if (element) observer.observe(element);
-    });
+      setActiveSection(current);
+      setIsOverDark(darkSections.includes(current));
+    };
 
-    return () => observer.disconnect();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll(); // initial check
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const scrollTo = (href: string) => {
